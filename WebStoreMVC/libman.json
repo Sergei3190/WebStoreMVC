@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@3.0.3",
+      "destination": "wwwroot/lib/twitter-bootstrap"
+    },
+    {
+      "library": "html5shiv@3.6.2",
+      "destination": "wwwroot/lib/html5shiv"
+    },
+    {
+      "library": "jquery@1.10.2",
+      "destination": "wwwroot/lib/jquery"
+    },
+    {
+      "library": "scrollup@2.4.1",
+      "destination": "wwwroot/lib/scrollup"
+    },
+    {
+      "library": "font-awesome@4.0.3",
+      "destination": "wwwroot/lib/font-awesome"
+    }
+  ]
+}
