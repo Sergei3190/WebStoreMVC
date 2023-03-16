@@ -1,19 +1,8 @@
 ﻿@model IEnumerable<WebStoreMVC.Models.Employee>
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>List</title>
-</head>
-<body>
-   <h3>Сотрудники</h3>
-    <table>
+<div class="container">
+    <h3>Сотрудники</h3>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -39,5 +28,4 @@
         </tbody>
     </table>
     <a href="/">На главную</a>
-</body>
-</html>
+</div>

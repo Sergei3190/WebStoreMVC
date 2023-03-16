@@ -12,7 +12,7 @@ public class EmployeeController : Controller
         new Employee() { Id = 3, Age = 18, LastName = "Сидоров", FirstName = "Сидор", MiddleName = "Сидорович" }
     };
 
-    public IActionResult List()
+    public IActionResult Index()
     {
         return View(_employees);
     }
