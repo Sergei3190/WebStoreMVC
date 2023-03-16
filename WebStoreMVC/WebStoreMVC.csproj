@@ -12,15 +12,10 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\animate.css" />
-    <None Include="wwwroot\css\bootstrap.min.css" />
-    <None Include="wwwroot\css\font-awesome.min.css" />
     <None Include="wwwroot\css\main.css" />
     <None Include="wwwroot\css\prettyPhoto.css" />
     <None Include="wwwroot\css\price-range.css" />
     <None Include="wwwroot\css\responsive.css" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
-    <None Include="wwwroot\fonts\FontAwesome.otf" />
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
     <None Include="wwwroot\images\404\404.png" />
@@ -87,13 +82,9 @@
     <None Include="wwwroot\images\shop\product7.jpg" />
     <None Include="wwwroot\images\shop\product8.jpg" />
     <None Include="wwwroot\images\shop\product9.jpg" />
-    <None Include="wwwroot\js\bootstrap.min.js" />
     <None Include="wwwroot\js\contact.js" />
     <None Include="wwwroot\js\gmaps.js" />
     <None Include="wwwroot\js\html5shiv.js" />
-    <None Include="wwwroot\js\jquery.js" />
-    <None Include="wwwroot\js\jquery.prettyPhoto.js" />
-    <None Include="wwwroot\js\jquery.scrollUp.min.js" />
     <None Include="wwwroot\js\main.js" />
     <None Include="wwwroot\js\price-range.js" />
   </ItemGroup>
