@@ -3,7 +3,7 @@ using WebStoreMVC.Models;
 
 namespace WebStoreMVC.Contollers;
 
-public class EmployeeController : Controller
+public class EmployeesController : Controller
 {
     private static readonly List<Employee> _employees = new List<Employee>()
     {

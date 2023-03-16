@@ -18,7 +18,7 @@
                 <tr>
                     <td>@item.Id</td>
                     <td>
-                        <a href="/employee/details/@item.Id">@item.LastName</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">@item.LastName</a>
                     </td>
                     <td>@item.FirstName</td>
                     <td>@item.MiddleName</td>
@@ -27,5 +27,5 @@
             }
         </tbody>
     </table>
-    <a href="/">На главную</a>
+    <a asp-controller="Home" asp-action="Index">На главную</a>
 </div>
