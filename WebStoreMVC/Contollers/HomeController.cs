@@ -8,4 +8,7 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    //TODO реализовать получение контактов и ошибку, сделать привязку к макету дизайна
+    public IActionResult Contacts() => View();
 }
