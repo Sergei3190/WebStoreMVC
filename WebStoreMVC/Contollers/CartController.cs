@@ -3,5 +3,5 @@
 namespace WebStore.Controllers;
 public class CartController : Controller
 {
-    public IActionResult Index() => View(); // cart.html
+    public IActionResult Index() => View();
 }
