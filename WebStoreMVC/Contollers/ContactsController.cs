@@ -2,7 +2,7 @@
 
 namespace WebStoreMVC.Contollers;
 
-public class HomeController : Controller
+public class ContactsController : Controller
 {
     public IActionResult Index()
     {
