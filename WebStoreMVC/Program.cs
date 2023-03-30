@@ -1,6 +1,10 @@
+using WebStoreMVC.Services;
+using WebStoreMVC.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
 
 var app = builder.Build();
 
