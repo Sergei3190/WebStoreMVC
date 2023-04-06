@@ -1,6 +1,8 @@
-﻿namespace WebStoreMVC.ViewModels;
+﻿using WebStoreMVC.ViewModels.Base;
 
-public class SectionViewModel : BaseViewModel
+namespace WebStoreMVC.ViewModels;
+
+public class SectionViewModel : NamedViewModel
 {
     public SectionViewModel()
     {

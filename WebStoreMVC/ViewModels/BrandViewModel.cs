@@ -1,5 +1,7 @@
-﻿namespace WebStoreMVC.ViewModels;
+﻿using WebStoreMVC.ViewModels.Base;
 
-public class BrandViewModel : BaseViewModel
+namespace WebStoreMVC.ViewModels;
+
+public class BrandViewModel : NamedViewModel
 {
 }
