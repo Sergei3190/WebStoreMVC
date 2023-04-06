@@ -55,6 +55,9 @@ public class EmployeesController : Controller
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
+        if (!ModelState.IsValid)
+            return View(viewModel);
+
         var employee = new Employee()
         {
             Id = viewModel.Id,
