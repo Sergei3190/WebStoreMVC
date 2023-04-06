@@ -14,7 +14,7 @@ public class EmployeesController : Controller
         _service = service;
     }
 
-    public IActionResult Index() => View(_service.GetAll());
+    public IActionResult Index() => View(GetAll());
 
     public IActionResult Details(int id)
     {
@@ -23,7 +23,16 @@ public class EmployeesController : Controller
         if (employee is null)
             return NotFound();
 
-        return View(employee);
+        var viewModel = new EmployeeViewModel()
+        {
+            Id = id,
+            LastName = employee.LastName,
+            FirstName = employee.FirstName,
+            MiddleName = employee.MiddleName,
+            Age = employee.Age,
+        };
+
+        return View(viewModel);
     }
 
     public IActionResult Create() => View("Edit", new EmployeeViewModel());
@@ -104,5 +113,19 @@ public class EmployeesController : Controller
             return NotFound();
 
         return RedirectToAction(nameof(Index));
+    }
+
+    private IEnumerable<EmployeeViewModel> GetAll()
+    {
+        var employees = _service.GetAll();
+        return employees
+            .Select(e => new EmployeeViewModel()
+            {
+                Id = e.Id,
+                LastName = e.LastName,
+                FirstName = e.FirstName,
+                MiddleName = e.MiddleName,
+                Age = e.Age,
+            });
     }
 }

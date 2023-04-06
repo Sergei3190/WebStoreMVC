@@ -1,21 +1,13 @@
-﻿@model WebStoreMVC.Models.Employee
+﻿@model EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Детали сотрудники";
+}
 
 <div class="container">
     <h4>Сотрудник</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
@@ -33,6 +25,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
         </dd>
     </dl>
 </div>

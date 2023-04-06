@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebStore.Controllers;
+namespace WebStoreMVC.Controllers;
 //TODO
 public class BlogsController : Controller
 {

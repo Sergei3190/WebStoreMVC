@@ -36,7 +36,7 @@ namespace WebStoreMVC.ViewModels
 
         public IEnumerable<ValidationResult?> Validate(ValidationContext validationContext)
         {
-            if (FirstName == "Иванов" && LastName == "Иван" && MiddleName == "Иванович")
+            if (FirstName == "Иван" && LastName == "Иванов" && MiddleName == "Иванович")
             {
                 return new []
                 {
