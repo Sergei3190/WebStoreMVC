@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
+builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
 
 var app = builder.Build();
 
