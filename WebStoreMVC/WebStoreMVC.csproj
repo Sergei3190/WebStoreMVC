@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Catalog\Partial\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,6 +94,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
   </ItemGroup>
 
 </Project>
