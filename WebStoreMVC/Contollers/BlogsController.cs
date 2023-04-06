@@ -14,12 +14,26 @@ public class BlogsController : Controller
 
     public IActionResult Index() => View(GetAll());
 
-    public IActionResult ShopBlog(int id) 
+    public IActionResult ShopBlog(int? id = null) 
     {
-        var blog = _service.GetById(id);
+        Blog? blog = null;
 
-        if (blog is null)
-            return NotFound();
+        if (id is null)
+        {
+            var blogs = _service.GetAll(isMain: true);
+
+            if (!blogs.Any())
+                return NotFound();
+
+            blog = blogs.First();   
+        }
+        else
+        {
+            blog = _service.GetById(id.Value);
+
+            if (blog is null)
+                return NotFound();
+        }
 
         return View(MapViewModel(blog));
     }

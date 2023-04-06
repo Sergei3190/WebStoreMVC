@@ -8,7 +8,7 @@ namespace WebStoreMVC.Services
     {
         public InMemoryBlogsService() { }
 
-        public IEnumerable<Blog> GetAll() => TestData.Blogs;
+        public IEnumerable<Blog> GetAll(bool? isMain) => (isMain.HasValue && isMain.Value) ? TestData.Blogs.Where(b => b.IsMain) : TestData.Blogs;
 
         public Blog? GetById(int id) => TestData.Blogs.FirstOrDefault(b => b.Id == id);
     }

@@ -3,7 +3,7 @@
 namespace WebStoreMVC.Services.Interfaces;
 public interface IBlogsService
 {
-    IEnumerable<Blog> GetAll();
+    IEnumerable<Blog> GetAll(bool? isMain = false);
 
     Blog? GetById(int id);
 }

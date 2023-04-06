@@ -13,6 +13,8 @@ public class BlogViewModel : NamedViewModel, IImagedViewModel
 
     public string? ImageUrl { get; set; }
 
+    public bool IsMain { get; set; }
+
     public string ShortText { get; set; }
 
     public string FullText { get; set; }
