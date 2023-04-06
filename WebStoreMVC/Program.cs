@@ -4,8 +4,10 @@ using WebStoreMVC.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
 builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
+builder.Services.AddScoped<IBlogsService, InMemoryBlogsService>();
 
 var app = builder.Build();
 
