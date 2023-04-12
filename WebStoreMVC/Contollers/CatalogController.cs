@@ -14,16 +14,14 @@ public class CatalogController : Controller
         _service = service;
     }
 
-    public IActionResult Index(int? sectionId, int? brandId)
+    public IActionResult Index([Bind("SectionId", "BrandId")] ProductFilter filter)
     {
-        var filter = new ProductFilter() { SectionId = sectionId, BrandId = brandId };
-
         var products = _service.GetProducts(filter);
 
         return View(new CatalogViewModel()
         {
-            SectionId = sectionId,
-            BrandId = brandId,
+            SectionId = filter.SectionId,
+            BrandId = filter.BrandId,
             Products = products
                 .OrderBy(p => p.Order)
                 .Select(p => new ProductViewModel()
