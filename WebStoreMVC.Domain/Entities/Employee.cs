@@ -1,7 +1,12 @@
-﻿using WebStoreMVC.Domain.Entities.Base;
+﻿using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.Domain.Entities.Base;
 
 namespace WebStoreMVC.Domain.Entities;
 
+[Index(nameof(LastName), new [] {nameof(FirstName), nameof(MiddleName), nameof(Age)})]
+[Index(nameof(FirstName), new [] {nameof(LastName), nameof(MiddleName), nameof(Age)})]
+[Index(nameof(MiddleName), new [] {nameof(LastName), nameof(FirstName), nameof(Age)})]
 public class Employee : Entity
 {
     public Employee()

@@ -1,8 +1,11 @@
-﻿using WebStoreMVC.Domain.Entities.Base;
+﻿using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.Domain.Entities.Base;
 using WebStoreMVC.Domain.Entities.Base.Interfaces;
 
 namespace WebStoreMVC.Domain.Entities;
 
+[Index(nameof(IsMain), IsUnique = false)]
 public class Blog : NamedEntity, IOrderedEntity, IImagedEntity
 {
     public Blog()
