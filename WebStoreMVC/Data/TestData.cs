@@ -1,5 +1,4 @@
 ﻿using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Models;
 
 namespace WebStoreMVC.Data;
 
@@ -25,6 +24,7 @@ public static class TestData
         new () { Id = 2, Age = 27, LastName = "Петров", FirstName = "Петр", MiddleName = "Петрович" },
         new () { Id = 3, Age = 18, LastName = "Сидоров", FirstName = "Сидор", MiddleName = "Сидорович" }
     };
+
     public static IEnumerable<Section> Sections { get; } = new List<Section>()
     {
         new () { Id = 1, Name = "Спорт", Order = 0, ParentId = null},

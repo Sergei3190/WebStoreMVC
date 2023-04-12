@@ -1,14 +1,15 @@
-﻿namespace WebStoreMVC.Models;
+﻿using WebStoreMVC.Domain.Entities.Base;
 
-public class Employee
+namespace WebStoreMVC.Domain.Entities;
+
+public class Employee : Entity
 {
     public Employee()
     {
         LastName = null!;
-        FirstName = null!;  
+        FirstName = null!;
     }
 
-    public int Id { get; set; }
     public int Age { get; set; }
     public string LastName { get; set; }
     public string FirstName { get; set; }

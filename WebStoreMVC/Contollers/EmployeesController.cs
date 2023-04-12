@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebStoreMVC.Models;
+using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
 

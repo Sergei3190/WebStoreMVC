@@ -1,5 +1,5 @@
 ﻿using WebStoreMVC.Data;
-using WebStoreMVC.Models;
+using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
 namespace WebStoreMVC.Services;

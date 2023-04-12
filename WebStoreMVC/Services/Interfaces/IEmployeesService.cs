@@ -1,4 +1,4 @@
-﻿using WebStoreMVC.Models;
+﻿using WebStoreMVC.Domain.Entities;
 
 namespace WebStoreMVC.Services.Interfaces;
 public interface IEmployeesService
