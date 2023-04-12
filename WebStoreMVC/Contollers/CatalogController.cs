@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+
+using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
@@ -8,10 +10,12 @@ namespace WebStoreMVC.Controllers;
 public class CatalogController : Controller
 {
     private readonly IProductsService _service;
+    private readonly IMapper _mapper;
 
-    public CatalogController(IProductsService service)
+    public CatalogController(IProductsService service, IMapper mapper)
     {
         _service = service;
+        _mapper = mapper;
     }
 
     public IActionResult Index([Bind("SectionId", "BrandId")] ProductFilter filter)
@@ -24,13 +28,7 @@ public class CatalogController : Controller
             BrandId = filter.BrandId,
             Products = products
                 .OrderBy(p => p.Order)
-                .Select(p => new ProductViewModel()
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    ImageUrl = p.ImageUrl,
-                    Price = p.Price
-                })
+                .Select(p => _mapper.Map<ProductViewModel>(p))
         });
     }
 }

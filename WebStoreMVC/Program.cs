@@ -9,6 +9,8 @@ builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
 builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
 builder.Services.AddScoped<IBlogsService, InMemoryBlogsService>();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

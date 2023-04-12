@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+
+using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
@@ -9,12 +11,17 @@ namespace WebStoreMVC.Controllers;
 public class BlogsController : Controller
 {
     private readonly IBlogsService _service;
+    private readonly IMapper _mapper;
 
-    public BlogsController(IBlogsService service) => _service = service;    
+    public BlogsController(IBlogsService service, IMapper mapper)
+    {
+        _service = service;
+        _mapper = mapper;
+    }
 
     public IActionResult Index() => View(GetAll());
 
-    public IActionResult ShopBlog(int? id = null) 
+    public IActionResult ShopBlog(int? id = null)
     {
         Blog? blog = null;
 
@@ -25,7 +32,7 @@ public class BlogsController : Controller
             if (!blogs.Any())
                 return NotFound();
 
-            blog = blogs.First();   
+            blog = blogs.First();
         }
         else
         {
@@ -35,7 +42,7 @@ public class BlogsController : Controller
                 return NotFound();
         }
 
-        return View(MapViewModel(blog));
+        return View(_mapper.Map<BlogViewModel>(blog));
     }
 
     private IEnumerable<BlogViewModel> GetAll()
@@ -43,19 +50,7 @@ public class BlogsController : Controller
         var blogs = _service.GetAll();
 
         return blogs
-            .OrderBy(b => b.Order) 
-            .Select(b => MapViewModel(b));  
-    }
-
-    private BlogViewModel MapViewModel(Blog b)
-    {
-        return new BlogViewModel()
-        {
-            Id = b.Id,
-            Name = b.Name,
-            ImageUrl = b.ImageUrl,
-            ShortText = b.ShortText,
-            FullText = b.FullText,
-        };
+            .OrderBy(b => b.Order)
+            .Select(b => _mapper.Map<BlogViewModel>(b));
     }
 }

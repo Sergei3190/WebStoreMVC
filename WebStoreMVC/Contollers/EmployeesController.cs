@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+
+using Microsoft.AspNetCore.Mvc;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
@@ -8,10 +10,12 @@ namespace WebStoreMVC.Contollers;
 public class EmployeesController : Controller
 {
     private readonly IEmployeesService _service;
+    private readonly IMapper _mapper;
 
-    public EmployeesController(IEmployeesService service)
+    public EmployeesController(IEmployeesService service, IMapper mapper)
     {
         _service = service;
+        _mapper = mapper;
     }
 
     public IActionResult Index() => View(GetAll());
@@ -23,14 +27,7 @@ public class EmployeesController : Controller
         if (employee is null)
             return NotFound();
 
-        var viewModel = new EmployeeViewModel()
-        {
-            Id = id,
-            LastName = employee.LastName,
-            FirstName = employee.FirstName,
-            MiddleName = employee.MiddleName,
-            Age = employee.Age,
-        };
+        var viewModel = _mapper.Map<EmployeeViewModel>(employee);
 
         return View(viewModel);
     }
@@ -47,14 +44,7 @@ public class EmployeesController : Controller
         if (employee is null)
             return NotFound();
 
-        var viewModel = new EmployeeViewModel()
-        {
-            Id = id.Value,
-            LastName = employee.LastName,
-            FirstName = employee.FirstName,
-            MiddleName = employee.MiddleName,
-            Age = employee.Age,
-        };
+        var viewModel = _mapper.Map<EmployeeViewModel>(employee);
 
         return View(viewModel);
     }
@@ -67,14 +57,7 @@ public class EmployeesController : Controller
         if (!ModelState.IsValid)
             return View(viewModel);
 
-        var employee = new Employee()
-        {
-            Id = viewModel.Id,
-            LastName = viewModel.LastName,
-            FirstName = viewModel.FirstName,
-            MiddleName = viewModel.MiddleName,
-            Age = viewModel.Age,
-        };
+        var employee = _mapper.Map<Employee>(viewModel);
 
         if (viewModel.Id == 0)
         {
@@ -94,14 +77,7 @@ public class EmployeesController : Controller
         if (employee is null)
             return NotFound();
 
-        var viewModel = new EmployeeViewModel()
-        {
-            Id = id,
-            LastName = employee.LastName,
-            FirstName = employee.FirstName,
-            MiddleName = employee.MiddleName,
-            Age = employee.Age,
-        };
+        var viewModel = _mapper.Map<EmployeeViewModel>(employee);
 
         return View(viewModel);
     }
@@ -119,13 +95,6 @@ public class EmployeesController : Controller
     {
         var employees = _service.GetAll();
         return employees
-            .Select(e => new EmployeeViewModel()
-            {
-                Id = e.Id,
-                LastName = e.LastName,
-                FirstName = e.FirstName,
-                MiddleName = e.MiddleName,
-                Age = e.Age,
-            });
+            .Select(e => _mapper.Map<EmployeeViewModel>(e));
     }
 }
