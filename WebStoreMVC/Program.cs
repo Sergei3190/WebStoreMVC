@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
+using WebStoreMVC.Data;
 using WebStoreMVC.Services;
 using WebStoreMVC.Services.Interfaces;
 
@@ -11,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
 builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
 builder.Services.AddScoped<IBlogsService, InMemoryBlogsService>();
+builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -20,6 +22,14 @@ builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbInitiService = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+    await dbInitiService.InitializeAsync(
+        canRemove: app.Configuration.GetValue("DbRecreate", false),
+        canAddTestData: app.Configuration.GetValue("DbAddTestData", false));
+}
 
 if (app.Environment.IsDevelopment())
 {
