@@ -2,16 +2,17 @@ using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Data;
-using WebStoreMVC.Services;
+using WebStoreMVC.Services.InMemory;
+using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
-builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
-builder.Services.AddScoped<IBlogsService, InMemoryBlogsService>();
+builder.Services.AddScoped<IEmployeesService, InSqlEmployeesService>();
+builder.Services.AddScoped<IProductsService, InSqlProductsService>();
+builder.Services.AddScoped<IBlogsService, InSqlBlogsService>();
 builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(typeof(Program));

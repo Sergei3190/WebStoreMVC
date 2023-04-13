@@ -2,7 +2,7 @@
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
-namespace WebStoreMVC.Services
+namespace WebStoreMVC.Services.InMemory
 {
     public class InMemoryProductsService : IProductsService
     {

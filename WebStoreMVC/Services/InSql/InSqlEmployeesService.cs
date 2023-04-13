@@ -1,36 +1,37 @@
-﻿using WebStoreMVC.Data;
+﻿using WebStoreMVC.DAL.Context;
+using WebStoreMVC.Data;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
-namespace WebStoreMVC.Services;
+namespace WebStoreMVC.Services.InSql;
 
-public class InMemoryEmployeesService : IEmployeesService
+//TODO
+public class InSqlEmployeesService : IEmployeesService
 {
-    private readonly ICollection<Employee> _employees;
-    private readonly ILogger<InMemoryEmployeesService> _logger;
+    private readonly ILogger<InSqlEmployeesService> _logger;
+    private readonly WebStoreMVC_DB _db;
     private int _lastFreeId;
 
-    public InMemoryEmployeesService(ILogger<InMemoryEmployeesService> logger)
+    public InSqlEmployeesService(ILogger<InSqlEmployeesService> logger, WebStoreMVC_DB db)
     {
-        _employees = TestData.Employees;
         _logger = logger;
-        _lastFreeId = _employees.Any() ? _employees.Max(e => e.Id) + 1 : 1;
+        _db = db;
     }
 
-    public IEnumerable<Employee> GetAll() => _employees;
+    public IEnumerable<Employee> GetAll() => _db.Employees;
 
-    public Employee? GetById(int id) => _employees.FirstOrDefault(e => e.Id == id);
+    public Employee? GetById(int id) => _db.Employees.FirstOrDefault(e => e.Id == id);
 
     public int Add(Employee employee)
     {
         ArgumentNullException.ThrowIfNull(employee);
 
-        if (_employees.Contains(employee))
+        if (_db.Employees.Contains(employee))
             return employee.Id;
 
         employee.Id = _lastFreeId++;
 
-        _employees.Add(employee);
+        _db.Employees.Add(employee);
 
         _logger.LogInformation("Добавлен сотрудник {0}", employee);
 
@@ -41,7 +42,7 @@ public class InMemoryEmployeesService : IEmployeesService
     {
         ArgumentNullException.ThrowIfNull(employee);
 
-        if (_employees.Contains(employee))
+        if (_db.Employees.Contains(employee))
             return true;
 
         var _employee = GetById(employee.Id);
@@ -70,7 +71,7 @@ public class InMemoryEmployeesService : IEmployeesService
             return false;
         }
 
-        _employees.Remove(employee);
+         _db.Employees.Remove(employee);
 
         _logger.LogInformation("Удален сотрудник {0}", employee);
 
