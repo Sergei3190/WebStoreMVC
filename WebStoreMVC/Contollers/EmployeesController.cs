@@ -20,9 +20,9 @@ public class EmployeesController : Controller
 
     public IActionResult Index() => View(GetAll());
 
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
-        var employee = _service.GetById(id);
+        var employee = await _service.GetByIdAsync(id);
 
         if (employee is null)
             return NotFound();
@@ -34,12 +34,12 @@ public class EmployeesController : Controller
 
     public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
-    public IActionResult Edit(int? id)
+    public async Task<IActionResult> Edit(int? id)
     {
         if (id is null)
             return View(new EmployeeViewModel());
 
-        var employee = _service.GetById(id.Value);
+        var employee = await _service.GetByIdAsync(id.Value);
 
         if (employee is null)
             return NotFound();
@@ -50,7 +50,7 @@ public class EmployeesController : Controller
     }
 
     [HttpPost]
-    public IActionResult Edit(EmployeeViewModel viewModel)
+    public async Task<IActionResult> Edit(EmployeeViewModel viewModel)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -61,18 +61,18 @@ public class EmployeesController : Controller
 
         if (viewModel.Id == 0)
         {
-            var employeeId = _service.Add(employee);
+            var employeeId = await _service.AddAsync(employee);
             return RedirectToAction(nameof(Details), new { Id = employeeId });
         }
 
-        _service.Edit(employee);
+        await _service.EditAsync(employee);
 
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var employee = _service.GetById(id);
+        var employee = await _service.GetByIdAsync(id);
 
         if (employee is null)
             return NotFound();
@@ -83,9 +83,9 @@ public class EmployeesController : Controller
     }
 
     [HttpPost]
-    public IActionResult DeleteConfirmed(int id)
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        if (!_service.Delete(id))
+        if (!await _service.DeleteAsync(id))
             return NotFound();
 
         return RedirectToAction(nameof(Index));

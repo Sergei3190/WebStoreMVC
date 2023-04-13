@@ -21,7 +21,7 @@ public class BlogsController : Controller
 
     public IActionResult Index() => View(GetAll());
 
-    public IActionResult ShopBlog(int? id = null)
+    public async Task<IActionResult> ShopBlog(int? id = null)
     {
         Blog? blog = null;
 
@@ -36,7 +36,7 @@ public class BlogsController : Controller
         }
         else
         {
-            blog = _service.GetById(id.Value);
+            blog = await _service.GetByIdAsync(id.Value);
 
             if (blog is null)
                 return NotFound();

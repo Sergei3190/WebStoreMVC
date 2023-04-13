@@ -5,11 +5,11 @@ public interface IEmployeesService
 {
     IEnumerable<Employee> GetAll();
 
-    Employee? GetById(int id);
+    Task<Employee?> GetByIdAsync(int id);
 
-    int Add(Employee employee);
+    Task<int> AddAsync(Employee employee);
 
-    bool Edit(Employee employee);
+    Task<bool> EditAsync(Employee employee);
 
-    bool Delete(int id);
+    Task<bool> DeleteAsync(int id);
 }

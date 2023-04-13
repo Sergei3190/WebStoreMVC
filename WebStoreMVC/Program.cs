@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Data;
-using WebStoreMVC.Services.InMemory;
 using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Interfaces;
 
@@ -34,7 +33,7 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();  
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseStaticFiles();

@@ -19,9 +19,9 @@ public class InMemoryEmployeesService : IEmployeesService
 
     public IEnumerable<Employee> GetAll() => _employees;
 
-    public Employee? GetById(int id) => _employees.FirstOrDefault(e => e.Id == id);
+    public async Task<Employee?> GetByIdAsync(int id) => await Task.FromResult(_employees.FirstOrDefault(e => e.Id == id)).ConfigureAwait(false);
 
-    public int Add(Employee employee)
+    public async Task<int> AddAsync(Employee employee)
     {
         ArgumentNullException.ThrowIfNull(employee);
 
@@ -34,17 +34,14 @@ public class InMemoryEmployeesService : IEmployeesService
 
         _logger.LogInformation("Добавлен сотрудник {0}", employee);
 
-        return employee.Id;
+        return await Task.FromResult(employee.Id).ConfigureAwait(false);
     }
 
-    public bool Edit(Employee employee)
+    public async Task<bool> EditAsync(Employee employee)
     {
         ArgumentNullException.ThrowIfNull(employee);
 
-        if (_employees.Contains(employee))
-            return true;
-
-        var _employee = GetById(employee.Id);
+        var _employee = await GetByIdAsync(employee.Id).ConfigureAwait(false);
         if (_employee is null)
         {
             _logger.LogWarning("При изменении сотрудника {0} - запись не найдена", employee);
@@ -58,12 +55,12 @@ public class InMemoryEmployeesService : IEmployeesService
 
         _logger.LogInformation("Изменен сотрудник {0}", employee);
 
-        return true;
+        return await Task.FromResult(true).ConfigureAwait(false);
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var employee = GetById(id);
+        var employee = await GetByIdAsync(id).ConfigureAwait(false);
         if (employee is null)
         {
             _logger.LogWarning("При удалении сотрудника с id = {0} - запись не найдена", id);
@@ -74,6 +71,6 @@ public class InMemoryEmployeesService : IEmployeesService
 
         _logger.LogInformation("Удален сотрудник {0}", employee);
 
-        return true;
+        return await Task.FromResult(true).ConfigureAwait(false);
     }
 }

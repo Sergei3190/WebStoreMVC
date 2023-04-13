@@ -1,4 +1,6 @@
-﻿using WebStoreMVC.DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
@@ -15,6 +17,6 @@ namespace WebStoreMVC.Services.InSql
 
         public IEnumerable<Blog> GetAll(bool? isMain) => isMain.HasValue && isMain.Value ? _db.Blogs.Where(b => b.IsMain) : _db.Blogs;
 
-        public Blog? GetById(int id) => _db.Blogs.FirstOrDefault(b => b.Id == id);
+        public async Task<Blog?> GetByIdAsync(int id) => await _db.Blogs.FirstOrDefaultAsync(b => b.Id == id).ConfigureAwait(false);
     }
 }

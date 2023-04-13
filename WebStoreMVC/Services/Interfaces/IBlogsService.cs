@@ -5,5 +5,5 @@ public interface IBlogsService
 {
     IEnumerable<Blog> GetAll(bool? isMain = false);
 
-    Blog? GetById(int id);
+    Task<Blog?> GetByIdAsync(int id);
 }

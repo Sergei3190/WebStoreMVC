@@ -107,7 +107,7 @@ public class DbInitializer
 
     private async Task InitializerBlogsAsync(CancellationToken cancel)
     {
-        if (await _db.Employees.AnyAsync(cancel).ConfigureAwait(false))
+        if (await _db.Blogs.AnyAsync(cancel).ConfigureAwait(false))
         {
             _logger.LogInformation("Инициализация БД тестовыми данными блогов не требуется");
             return;

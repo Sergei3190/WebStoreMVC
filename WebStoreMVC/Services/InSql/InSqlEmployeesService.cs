@@ -1,16 +1,16 @@
-﻿using WebStoreMVC.DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Data;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
 namespace WebStoreMVC.Services.InSql;
 
-//TODO
 public class InSqlEmployeesService : IEmployeesService
 {
     private readonly ILogger<InSqlEmployeesService> _logger;
     private readonly WebStoreMVC_DB _db;
-    private int _lastFreeId;
 
     public InSqlEmployeesService(ILogger<InSqlEmployeesService> logger, WebStoreMVC_DB db)
     {
@@ -20,32 +20,29 @@ public class InSqlEmployeesService : IEmployeesService
 
     public IEnumerable<Employee> GetAll() => _db.Employees;
 
-    public Employee? GetById(int id) => _db.Employees.FirstOrDefault(e => e.Id == id);
+    public async Task<Employee?> GetByIdAsync(int id) => await _db.Employees.FirstOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
 
-    public int Add(Employee employee)
+    public async Task<int> AddAsync(Employee employee)
     {
         ArgumentNullException.ThrowIfNull(employee);
 
         if (_db.Employees.Contains(employee))
             return employee.Id;
 
-        employee.Id = _lastFreeId++;
+        await _db.Employees.AddAsync(employee).ConfigureAwait(false);
 
-        _db.Employees.Add(employee);
+        await _db.SaveChangesAsync().ConfigureAwait(false);
 
         _logger.LogInformation("Добавлен сотрудник {0}", employee);
 
         return employee.Id;
     }
 
-    public bool Edit(Employee employee)
+    public async Task<bool> EditAsync(Employee employee)
     {
         ArgumentNullException.ThrowIfNull(employee);
 
-        if (_db.Employees.Contains(employee))
-            return true;
-
-        var _employee = GetById(employee.Id);
+        var _employee = await GetByIdAsync(employee.Id).ConfigureAwait(false);
         if (_employee is null)
         {
             _logger.LogWarning("При изменении сотрудника {0} - запись не найдена", employee);
@@ -57,14 +54,16 @@ public class InSqlEmployeesService : IEmployeesService
         _employee.FirstName = employee.FirstName;
         _employee.MiddleName = employee.MiddleName;
 
+        await _db.SaveChangesAsync().ConfigureAwait(false);
+
         _logger.LogInformation("Изменен сотрудник {0}", employee);
 
         return true;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var employee = GetById(id);
+        var employee = await GetByIdAsync(id).ConfigureAwait(false);
         if (employee is null)
         {
             _logger.LogWarning("При удалении сотрудника с id = {0} - запись не найдена", id);
@@ -72,6 +71,8 @@ public class InSqlEmployeesService : IEmployeesService
         }
 
          _db.Employees.Remove(employee);
+
+        await _db.SaveChangesAsync().ConfigureAwait(false);
 
         _logger.LogInformation("Удален сотрудник {0}", employee);
 
