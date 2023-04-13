@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Services;
 using WebStoreMVC.Services.Interfaces;
 
@@ -10,6 +13,11 @@ builder.Services.AddScoped<IProductsService, InMemoryProductsService>();
 builder.Services.AddScoped<IBlogsService, InMemoryBlogsService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+});
 
 var app = builder.Build();
 
