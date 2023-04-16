@@ -4,9 +4,9 @@ using WebStoreMVC.Domain.Entities.Base;
 
 namespace WebStoreMVC.Domain.Entities;
 
-[Index(nameof(LastName), new [] {nameof(FirstName), nameof(MiddleName), nameof(Age)})]
-[Index(nameof(FirstName), new [] {nameof(LastName), nameof(MiddleName), nameof(Age)})]
-[Index(nameof(MiddleName), new [] {nameof(LastName), nameof(FirstName), nameof(Age)})]
+[Index(nameof(LastName), new [] {nameof(FirstName), nameof(MiddleName), nameof(Age)}, IsUnique = true)]
+[Index(nameof(FirstName), new [] {nameof(LastName), nameof(MiddleName), nameof(Age)}, IsUnique = true)]
+[Index(nameof(MiddleName), new [] {nameof(LastName), nameof(FirstName), nameof(Age)}, IsUnique = true)]
 public class Employee : Entity
 {
     public Employee()
