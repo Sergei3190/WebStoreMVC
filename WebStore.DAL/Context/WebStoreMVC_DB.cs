@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.Domain.Entities;
+using WebStoreMVC.Domain.Identity;
 
 namespace WebStoreMVC.DAL.Context;
 
-public class WebStoreMVC_DB : DbContext
+public class WebStoreMVC_DB : IdentityDbContext<User, Role, string>
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<Brand> Brands { get; set; }
