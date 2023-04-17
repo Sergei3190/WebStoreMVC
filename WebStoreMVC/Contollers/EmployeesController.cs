@@ -18,6 +18,22 @@ public class EmployeesController : Controller
         _mapper = mapper;
     }
 
+    public IActionResult Index(int? page, int pageSize = 15)
+    {
+        IEnumerable<Employee> employees = null;
+
+        if (page is { } _page && pageSize > 0)
+            employees = _service.Get(_page * pageSize, pageSize);
+        else
+            employees = _service.GetAll();
+
+        ViewBag.PagesCount = pageSize > 0 ? (int?)Math.Ceiling(_service.GetCount() / (double)pageSize) : null!;
+
+        var viewModel = employees.Select(e => _mapper.Map<EmployeeViewModel>(e));
+
+        return View(viewModel);
+    }
+
     public IActionResult Index() => View(GetAll());
 
     public async Task<IActionResult> Details(int id)
