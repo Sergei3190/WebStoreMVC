@@ -19,6 +19,21 @@ public class InMemoryEmployeesService : IEmployeesService
 
     public IEnumerable<Employee> GetAll() => _employees;
 
+    public IEnumerable<Employee> Get(int skip, int take)
+    {
+        if (take == 0 || skip > GetCount())
+            return Enumerable.Empty<Employee>();
+
+        IEnumerable<Employee> query = _employees;
+
+        if (skip > 0)
+            query.Skip(skip);
+
+        return query.Take(take);
+    }
+
+    public int GetCount() => _employees.Count;
+
     public async Task<Employee?> GetByIdAsync(int id) => await Task.FromResult(_employees.FirstOrDefault(e => e.Id == id)).ConfigureAwait(false);
 
     public async Task<int> AddAsync(Employee employee)

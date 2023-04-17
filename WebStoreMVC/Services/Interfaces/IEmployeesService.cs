@@ -5,6 +5,10 @@ public interface IEmployeesService
 {
     IEnumerable<Employee> GetAll();
 
+    IEnumerable<Employee> Get(int skip, int take);
+
+	int GetCount();
+
     Task<Employee?> GetByIdAsync(int id);
 
     Task<int> AddAsync(Employee employee);

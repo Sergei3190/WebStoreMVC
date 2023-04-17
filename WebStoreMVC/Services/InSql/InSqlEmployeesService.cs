@@ -20,7 +20,22 @@ public class InSqlEmployeesService : IEmployeesService
 
     public IEnumerable<Employee> GetAll() => _db.Employees;
 
-    public async Task<Employee?> GetByIdAsync(int id) => await _db.Employees.FirstOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
+    public IEnumerable<Employee> Get(int skip, int take)
+    {
+        if (take == 0)
+            return Enumerable.Empty<Employee>();
+
+        IQueryable<Employee> query = _db.Employees;
+
+        if (skip > 0)
+            query = query.Skip(skip);
+
+        return query.Take(take);
+    }
+
+    public int GetCount() => _db.Employees.Count();
+
+    public async Task<Employee?> GetByIdAsync(int id) => await _db.Employees.FindAsync(id).ConfigureAwait(false);
 
     public async Task<int> AddAsync(Employee employee)
     {
