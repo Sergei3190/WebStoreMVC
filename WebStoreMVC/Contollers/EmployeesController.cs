@@ -34,8 +34,6 @@ public class EmployeesController : Controller
         return View(viewModel);
     }
 
-    public IActionResult Index() => View(GetAll());
-
     public async Task<IActionResult> Details(int id)
     {
         var employee = await _service.GetByIdAsync(id);
@@ -105,12 +103,5 @@ public class EmployeesController : Controller
             return NotFound();
 
         return RedirectToAction(nameof(Index));
-    }
-
-    private IEnumerable<EmployeeViewModel> GetAll()
-    {
-        var employees = _service.GetAll();
-        return employees
-            .Select(e => _mapper.Map<EmployeeViewModel>(e));
     }
 }
