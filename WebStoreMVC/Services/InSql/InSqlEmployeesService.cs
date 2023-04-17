@@ -26,9 +26,6 @@ public class InSqlEmployeesService : IEmployeesService
     {
         ArgumentNullException.ThrowIfNull(employee);
 
-        if (_db.Employees.Contains(employee))
-            return employee.Id;
-
         await _db.Employees.AddAsync(employee).ConfigureAwait(false);
 
         await _db.SaveChangesAsync().ConfigureAwait(false);
@@ -63,7 +60,11 @@ public class InSqlEmployeesService : IEmployeesService
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var employee = await GetByIdAsync(id).ConfigureAwait(false);
+        var employee = await _db.Employees
+            .Select(e => new Employee() { Id = e.Id })
+            .FirstOrDefaultAsync(e => e.Id == id)
+            .ConfigureAwait(false);
+
         if (employee is null)
         {
             _logger.LogWarning("При удалении сотрудника с id = {0} - запись не найдена", id);
