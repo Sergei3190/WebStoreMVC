@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Data;
 using WebStoreMVC.Domain.Identity;
+using WebStoreMVC.Services.InCookies;
 using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Interfaces;
 
@@ -51,6 +52,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEmployeesService, InSqlEmployeesService>();
 builder.Services.AddScoped<IProductsService, InSqlProductsService>();
 builder.Services.AddScoped<IBlogsService, InSqlBlogsService>();
+builder.Services.AddScoped<ICartService, InCookiesCartService>();
 builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(typeof(Program));

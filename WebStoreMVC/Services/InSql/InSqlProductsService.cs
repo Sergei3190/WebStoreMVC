@@ -1,5 +1,6 @@
-﻿using WebStoreMVC.DAL.Context;
-using WebStoreMVC.Data;
+﻿using Microsoft.EntityFrameworkCore;
+
+using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
@@ -17,19 +18,50 @@ namespace WebStoreMVC.Services.InSql
         }
 
         public IEnumerable<Section> GetSections() => _db.Sections;
+
+        public Section? GetSectionById(int id)
+        {
+            return _db.Sections
+                .Include(p => p.Products)
+                .FirstOrDefault(p => p.Id == id);
+        }
+
         public IEnumerable<Brand> GetBrands() => _db.Brands;
+
+        public Brand? GetBrandById(int id)
+        {
+            return _db.Brands
+                .Include(p => p.Products)
+                .FirstOrDefault(p => p.Id == id);
+        }
 
         public IEnumerable<Product> GetProducts(ProductFilter? filter)
         {
-            var query = _db.Products.AsQueryable();
+            var query = _db.Products
+               .Include(p => p.Section)
+               .Include(p => p.Brand)
+               .AsQueryable();
 
-            if (filter is { SectionId: { } sectionId })
-                query = query.Where(x => x.SectionId == sectionId);
+            if (filter is { Ids: { Length: > 0 } ids })
+                query = query.Where(x => ids.Contains(x.Id));
+            else
+            {
+                if (filter is { SectionId: { } sectionId })
+                    query = query.Where(x => x.SectionId == sectionId);
 
-            if (filter is { BrandId: { } brandId })
-                query = query.Where(x => x.BrandId == brandId);
+                if (filter is { BrandId: { } brandId })
+                    query = query.Where(x => x.BrandId == brandId);
+            }
 
             return query;
+        }
+
+        public Product? GetProductById(int id)
+        {
+            return _db.Products
+                .Include(p => p.Section)
+                .Include(p => p.Brand)
+                .FirstOrDefault(p => p.Id == id);
         }
     }
 }

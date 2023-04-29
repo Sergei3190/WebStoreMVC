@@ -4,6 +4,7 @@ using WebStoreMVC.Services.Interfaces;
 
 namespace WebStoreMVC.Services.InMemory
 {
+    [Obsolete("Используйте InSqlProductsService")]
     public class InMemoryProductsService : IProductsService
     {
         public InMemoryProductsService() { }
@@ -23,6 +24,21 @@ namespace WebStoreMVC.Services.InMemory
                 query = query.Where(x => x.BrandId == brandId);
 
             return query;
+        }
+
+        public Section? GetSectionById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Brand? GetBrandById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product? GetProductById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,5 +7,11 @@ public interface IProductsService
 
     IEnumerable<Brand> GetBrands();
 
-    IEnumerable<Product> GetProducts(ProductFilter? filter = null); 
+    IEnumerable<Product> GetProducts(ProductFilter? filter = null);
+
+    Section? GetSectionById(int id);
+
+    Brand? GetBrandById(int id);
+
+    Product? GetProductById(int id);
 }
