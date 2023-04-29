@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreMVC.Domain.Entities;
+using WebStoreMVC.Domain.Identity;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Contollers;
 
+[Authorize]
 public class EmployeesController : Controller
 {
     private readonly IEmployeesService _service;
@@ -34,7 +37,7 @@ public class EmployeesController : Controller
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Details(int id)
+	public async Task<IActionResult> Details(int id)
     {
         var employee = await _service.GetByIdAsync(id);
 
@@ -46,7 +49,8 @@ public class EmployeesController : Controller
         return View(viewModel);
     }
 
-    public IActionResult Create() => View("Edit", new EmployeeViewModel());
+	[Authorize(Roles = Role.Administrations)]
+	public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
     public async Task<IActionResult> Edit(int? id)
     {
@@ -64,7 +68,8 @@ public class EmployeesController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(EmployeeViewModel viewModel)
+	[Authorize(Roles = Role.Administrations)]
+	public async Task<IActionResult> Edit(EmployeeViewModel viewModel)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -84,7 +89,8 @@ public class EmployeesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public async Task<IActionResult> Delete(int id)
+	[Authorize(Roles = Role.Administrations)]
+	public async Task<IActionResult> Delete(int id)
     {
         var employee = await _service.GetByIdAsync(id);
 
@@ -97,7 +103,8 @@ public class EmployeesController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteConfirmed(int id)
+	[Authorize(Roles = Role.Administrations)]
+	public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (!await _service.DeleteAsync(id))
             return NotFound();
