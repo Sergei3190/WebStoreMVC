@@ -1,2 +1,10 @@
-﻿<partial name="Partial/_CartItems"/>
-<partial name="Partial/_DoAction"/>
+﻿@model CartViewModel
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<p>@Model.ItemsCount</p>
+
+<partial name="Partial/_CartItems" model="Model"/>
+<partial name="Partial/_DoAction" model="Model" />

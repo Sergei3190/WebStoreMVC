@@ -1,4 +1,6 @@
-﻿<section id="do_action">
+﻿@model CartViewModel
+
+<section id="do_action">
 	<div class="container">
 		<div class="heading">
 			<h3>Что мы сделаем с этим дальше?</h3>
@@ -9,7 +11,7 @@
 				<partial name="Partial/_ChoseArea"/>
 			</div>
 			<div class="col-sm-6">
-				<partial name="Partial/_TotalArea"/>
+				<partial name="Partial/_TotalArea" model="Model.TotalPrice"/>
 			</div>
 		</div>
 	</div>
