@@ -6,6 +6,8 @@ using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
 
+using WebStoreMVCInfrastructure.Mappings;
+
 namespace WebStoreMVC.Controllers;
 public class CatalogController : Controller
 {
@@ -31,4 +33,14 @@ public class CatalogController : Controller
                 .Select(p => _mapper.Map<ProductViewModel>(p))
         });
     }
+
+	public IActionResult Details(int id)
+	{
+		var product = _service.GetProductById(id);
+
+		if (product is null)
+			return NotFound();
+
+		return View(product.ToView());
+	}
 }
