@@ -4,5 +4,7 @@ namespace WebStoreMVC.Domain.Identity;
 
 public class Role: IdentityRole
 {
-    public override string ToString() => Name;
+	public const string Administrations = "Administrations";
+	public const string Users = "Users";
+	public override string ToString() => Name;
 }

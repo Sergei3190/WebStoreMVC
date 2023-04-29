@@ -1,18 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
+using WebStoreMVC.Domain.Identity;
 
 namespace WebStoreMVC.Data;
 
 public class DbInitializer
 {
     private readonly WebStoreMVC_DB _db;
-    private readonly ILogger<DbInitializer> _logger;
+	private readonly UserManager<User> _userManager;
+	private readonly RoleManager<Role> _roleManager;
+	private readonly ILogger<DbInitializer> _logger;
 
-    public DbInitializer(WebStoreMVC_DB db, ILogger<DbInitializer> logger)
+    public DbInitializer(WebStoreMVC_DB db,
+		UserManager<User> userManager,
+		RoleManager<Role> roleManager,
+		ILogger<DbInitializer> logger)
     {
         _db = db;
-        _logger = logger;
+		_userManager = userManager;
+		_roleManager = roleManager;
+		_logger = logger;
     }
 
     public async Task InitializeAsync(bool canRemove, bool canAddTestData, CancellationToken cancel = default)
@@ -37,7 +46,9 @@ public class DbInitializer
             _logger.LogInformation("Инициализация БД тестовыми данными выполнена успешно");
         }
 
-        _logger.LogInformation("Инициализация БД выполнена успешно");
+		await InitializerIdentitiesAsync(cancel).ConfigureAwait(false);
+
+		_logger.LogInformation("Инициализация БД выполнена успешно");
     }
 
     public async Task<bool> RemoveAsync(CancellationToken cancel = default)
@@ -150,4 +161,51 @@ public class DbInitializer
         foreach (var blog in TestData.Blogs)
             blog.Id = 0;
     }
+
+	private async Task InitializerIdentitiesAsync(CancellationToken cancel)
+	{
+		async Task CheckRoleAsync(string roleName)
+		{
+			if (await _roleManager.RoleExistsAsync(roleName))
+				_logger.LogInformation("Роль {0} существует в БД", roleName);
+			else
+			{
+				_logger.LogInformation("Роль {0} отсутствует в БД. Создаем...", roleName);
+				await _roleManager.CreateAsync(new Role() { Name = roleName }).ConfigureAwait(false);
+				_logger.LogInformation("Роль {0} успешно создана в БД", roleName);
+			}
+		}
+
+		await CheckRoleAsync(Role.Administrations).ConfigureAwait(false);
+		await CheckRoleAsync(Role.Users).ConfigureAwait(false);
+
+		if (await _userManager.FindByNameAsync(User.Administrator) is null)
+		{
+			_logger.LogInformation("Пользователь {0} отсутствует в БД. Создаем...", User.Administrator);
+
+			var admin = new User() { UserName = User.Administrator };
+
+			var create_result = await _userManager.CreateAsync(admin, User.AdminPassword).ConfigureAwait(false);
+
+			if (create_result.Succeeded)
+			{
+				_logger.LogInformation("Пользователь {0} успешно создан в БД. Присваеваем ему роль администратора...", User.Administrator);
+
+				await _userManager.AddToRoleAsync(admin, Role.Administrations).ConfigureAwait(false);
+
+				_logger.LogInformation("Пользователю {0} присвоена роль администратора", User.Administrator);
+			}
+			else
+			{
+				var errors = create_result.Errors.Select(e => e.Description);
+
+				var error_message = string.Join(", ", errors);
+
+				throw new InvalidOperationException($"Невозможно создать {User.Administrator}. Ошибка {error_message}");
+			}
+		}
+		else
+			_logger.LogInformation("Пользователь {0} существует в БД.", User.Administrator);
+
+	}
 }

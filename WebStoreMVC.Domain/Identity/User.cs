@@ -4,5 +4,7 @@ namespace WebStoreMVC.Domain.Identity;
 
 public class User : IdentityUser
 {
-    public override string ToString() => UserName;
+	public const string Administrator = "Admin";
+	public const string AdminPassword = "a_123";
+	public override string ToString() => UserName;
 }
