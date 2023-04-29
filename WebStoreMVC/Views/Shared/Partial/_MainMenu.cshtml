@@ -18,6 +18,9 @@
 		</li> 
 		<li><a asp-controller="Errors" asp-action="Index">404</a></li>
 		<li><a asp-controller="Contacts" asp-action="Index">Контакты</a></li>
-		<li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
+		@if (User.Identity!.IsAuthenticated)
+		{
+			<li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
+		}
 	</ul>
 </div>

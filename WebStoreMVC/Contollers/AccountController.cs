@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Identity;
@@ -6,6 +7,7 @@ using WebStoreMVC.ViewModels.Identity;
 
 namespace WebStoreMVC.Controllers;
 
+[Authorize]
 public class AccountController : Controller
 {
     private readonly UserManager<User> _userManager;
@@ -19,10 +21,12 @@ public class AccountController : Controller
         _logger = logger;   
     }
 
+    [AllowAnonymous]
     public IActionResult Register() => View(new RegisterUserViewModel());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [AllowAnonymous]
     public async Task<IActionResult> Register(RegisterUserViewModel viewModel)
     {
         if (!ModelState.IsValid)
@@ -53,11 +57,13 @@ public class AccountController : Controller
         return View(viewModel);  
     }
 
+    [AllowAnonymous]
     public IActionResult Login(string? returnUrl) => View(new LoginViewModel() { ReturnUrl = returnUrl });
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(LoginViewModel viewModel) 
+	[AllowAnonymous]
+	public async Task<IActionResult> Login(LoginViewModel viewModel) 
     {
         if (!ModelState.IsValid)
             return View(viewModel);
@@ -92,7 +98,9 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Home");
     }
-    public IActionResult AccessDenied(string? returnUrl)
+
+	[AllowAnonymous]
+	public IActionResult AccessDenied(string? returnUrl)
     {
         ViewBag.ReturnUrl = returnUrl;  
         return View();
