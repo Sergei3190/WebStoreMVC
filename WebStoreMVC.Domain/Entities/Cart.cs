@@ -1,4 +1,4 @@
-﻿namespace WebStore.Domain.Entities;
+﻿namespace WebStoreMVC.Domain.Entities;
 
 public class Cart
 {
