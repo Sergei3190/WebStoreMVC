@@ -5,14 +5,13 @@ public class Cart
 	public Cart()
 	{
 		Items = new HashSet<CartItem>();
-		ItemsCount = Items.Sum(i => i.Quantity);
 	}
 
 	public ICollection<CartItem> Items { get; set; }
 
-	public int ItemsCount { get; }
+	public int ItemsCount => Items.Sum(i => i.Quantity);
 
-	public void Add(int productId)
+    public void Add(int productId)
 	{
 		var item = Items.FirstOrDefault(i => i.ProductId == productId);
 		if (item is null)
