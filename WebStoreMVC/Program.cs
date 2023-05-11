@@ -1,14 +1,24 @@
+using System.Globalization;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Data;
-using WebStoreMVC.Domain.Identity;
+using WebStoreMVC.Domain.Entities.Identity;
+using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Services.InCookies;
 using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru-RU");
+
+builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
+{
+	opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+});
 
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<WebStoreMVC_DB>()
@@ -35,7 +45,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-    opt.Cookie.Name = "GB.WenStore";
+    opt.Cookie.Name = "GB.WebStore_MVC";
     opt.Cookie.HttpOnly = true;
 
     opt.ExpireTimeSpan = TimeSpan.FromDays(10);
@@ -47,20 +57,19 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.SlidingExpiration = true;
 });
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Conventions.Add(new AreasConvension());
+});
 
 builder.Services.AddScoped<IEmployeesService, InSqlEmployeesService>();
 builder.Services.AddScoped<IProductsService, InSqlProductsService>();
 builder.Services.AddScoped<IBlogsService, InSqlBlogsService>();
 builder.Services.AddScoped<ICartService, InCookiesCartService>();
+builder.Services.AddScoped<IOrderService, InSqlOrderService>();
 builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(typeof(Program));
-
-builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
-{
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
-});
 
 var app = builder.Build();
 
@@ -86,8 +95,15 @@ app.UseAuthorization();
 
 app.MapGet("/greetings", () => app.Configuration["ServerGreetings"]);
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+         name: "default",
+         pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();
