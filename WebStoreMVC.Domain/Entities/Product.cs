@@ -35,5 +35,5 @@ public class Product : NamedEntity, IOrderedEntity, IImagedEntity
     [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
 
-    public override string ToString() => $"Id: {Id}, Name: {Name}, Section: {Section.Name}, Brand: {Brand?.Name}";
+    public override string ToString() => $"Id: {Id}, Name: {Name}, Section: {Section?.Name}, Brand: {Brand?.Name}";
 }

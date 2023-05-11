@@ -70,6 +70,15 @@ namespace WebStoreMVC.Services.InSql
         {
             ArgumentNullException.ThrowIfNull(product);
 
+            var lastItem = await _db.Products
+                .OrderBy(p => p.Order)
+                .Select(p => new { p.Order })
+                .LastOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if (lastItem is {Order: {} lastOrder } )
+                product.Order = ++lastOrder;
+
             await _db.Products.AddAsync(product).ConfigureAwait(false);
 
             await _db.SaveChangesAsync().ConfigureAwait(false);
@@ -83,23 +92,24 @@ namespace WebStoreMVC.Services.InSql
 		{
 			ArgumentNullException.ThrowIfNull(product);
 
-			//var _product = await GetByIdAsync(product.Id).ConfigureAwait(false);
-			//if (_product is null)
-			//{
-			//	_logger.LogWarning("При изменении товара {0} - запись не найдена", product);
-			//	return false;
-			//}
+            var _product = await GetProductById(product.Id).ConfigureAwait(false);
 
-			//_product.Age = product.Age;
-			//_product.LastName = product.LastName;
-			//_product.FirstName = product.FirstName;
-			//_product.MiddleName = product.MiddleName;
+            if (_product is null)
+            {
+                _logger.LogWarning("При изменении товара {0} - запись не найдена", product);
+                return false;
+            }
 
-			//await _db.SaveChangesAsync().ConfigureAwait(false);
+            _product.Name = product.Name;
+            _product.SectionId = product.SectionId;
+            _product.BrandId = product.BrandId;
+            _product.Price = product.Price;
 
-			//_logger.LogInformation("Изменен товар {0}", product);
+            await _db.SaveChangesAsync().ConfigureAwait(false);
 
-			return true;
+            _logger.LogInformation("Изменен товар {0}", product);
+
+            return true;
 		}
 
 		public async Task<bool> DeleteAsync(int id)
@@ -124,22 +134,34 @@ namespace WebStoreMVC.Services.InSql
 			return true;
 		}
 
-        public SelectList PopulateSectionDropDownList(object? selectedSection = null)
+        public async Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList()
         {
             var query = from s in _db.Sections
                         orderby s.Name
-                        select s;
+                        select new SelectListItem()
+                        {
+                            Text = s.Name,
+                            Value = s.Id.ToString()
+                        };
 
-            return new SelectList(query.AsNoTracking(), "SectionId", "Name", selectedSection);
+            return await query
+                .ToArrayAsync()
+                .ConfigureAwait(false);
         }
 
-        public SelectList PopulateBrandDropDownList(object? selectedBrand = null)
+        public async Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList()
         {
             var query = from s in _db.Brands
                         orderby s.Name
-                        select s;
+                        select new SelectListItem()
+                        {
+                            Text = s.Name,
+                            Value = s.Id.ToString()
+                        };
 
-            return new SelectList(query.AsNoTracking(), "BrandId", "Name", selectedBrand);
+            return await query
+              .ToArrayAsync()
+              .ConfigureAwait(false);
         }
     }
 }

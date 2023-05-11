@@ -32,6 +32,8 @@
     <tbody>
         @foreach (var product in Model)
         {
+            var brandName = product.Brand != null ? product.Brand.Name : null;
+
             <tr>
                 <td>
                     <a asp-action="Edit" asp-route-id="@product.Id">
@@ -40,8 +42,8 @@
                 </td>
                 <td>@Html.DisplayFor(_ => product.Id)</td>
                 <td>@Html.DisplayFor(_ => product.Name)</td>
-                <td>@Html.DisplayFor(_ => product.Brand)</td>
-                <td>@Html.DisplayFor(_ => product.Section)</td>
+                <td>@Html.DisplayFor(_ => brandName)</td>
+                <td>@Html.DisplayFor(_ => product.Section.Name)</td>
                 <td>
                     <img src="~/images/shop/@product.ImageUrl" width="50" alt="@product.Name" />
                 </td>

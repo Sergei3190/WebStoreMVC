@@ -23,7 +23,7 @@ public interface IProductsService
 
 	Task<bool> DeleteAsync(int id);
 
-	SelectList PopulateSectionDropDownList(object? selectedSection = null);
+	Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList();
 
-	SelectList PopulateBrandDropDownList(object? selectedBrand = null);
+    Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList();
 }

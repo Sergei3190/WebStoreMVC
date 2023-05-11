@@ -67,7 +67,7 @@
 							<p><b>Доступность:</b> На складе</p>
 							<p><b>Состояние:</b> Новое</p>
 							<p><b>Секция:</b> @Model.Section</p>
-							@if (Model.Brand is { Length: > 0 } brand)
+							@if (Model.Brand is { Name.Length: > 0 } brand)
 							{
 								<p><b>Бренд:</b> @brand</p>
 							}

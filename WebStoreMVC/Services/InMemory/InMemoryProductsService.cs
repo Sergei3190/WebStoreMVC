@@ -53,17 +53,17 @@ namespace WebStoreMVC.Services.InMemory
 			throw new NotImplementedException();
 		}
 
-        public SelectList PopulateSectionDropDownList(object? selectedSection = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public SelectList PopulateBrandDropDownList(object? selectedBrand = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<int> AddAsync(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList()
         {
             throw new NotImplementedException();
         }

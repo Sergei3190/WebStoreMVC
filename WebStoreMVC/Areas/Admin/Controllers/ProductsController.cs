@@ -2,6 +2,9 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+using NuGet.Packaging.Signing;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Identity;
@@ -34,10 +37,10 @@ public class ProductsController : Controller
         return View(products);
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        ViewBag.SectionId = _service.PopulateSectionDropDownList();
-        ViewBag.BrandId = _service.PopulateBrandDropDownList();
+        ViewBag.SectionId = await _service.PopulateSectionDropDownList();
+        ViewBag.BrandId = await _service.PopulateBrandDropDownList();
 
         return View("Edit", new ProductViewModel());
     }
@@ -46,6 +49,7 @@ public class ProductsController : Controller
     {
         if (id is null)
             return View(new ProductViewModel());
+
         var product = await _service.GetProductById(id.Value);
 
         if (product is null)
@@ -53,8 +57,8 @@ public class ProductsController : Controller
 
         var viewModel = _mapper.Map<ProductViewModel>(product);
 
-        ViewBag.SectionId = _service.PopulateSectionDropDownList();
-        ViewBag.BrandId = _service.PopulateBrandDropDownList();
+        ViewBag.SectionId = await _service.PopulateSectionDropDownList();
+        ViewBag.BrandId = await _service.PopulateBrandDropDownList();
 
         return View(viewModel);
     }
@@ -64,6 +68,9 @@ public class ProductsController : Controller
     public async Task<IActionResult> Edit(ProductViewModel viewModel)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
+
+        ViewBag.SectionId = await _service.PopulateSectionDropDownList();
+        ViewBag.BrandId = await _service.PopulateBrandDropDownList();
 
         if (!ModelState.IsValid)
             return View(viewModel);

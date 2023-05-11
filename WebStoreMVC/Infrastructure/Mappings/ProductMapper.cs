@@ -13,8 +13,18 @@ public static class ProductMapper
             Name = product.Name,
             ImageUrl = product.ImageUrl,
             Price = product.Price,
-            Section = product.Section.Name,
-            Brand = product.Brand?.Name
+            SectionId = product.SectionId,  
+            Section = new SectionViewModel() 
+            {
+                Id = product.Section.Id,
+                Name = product.Section.Name
+            },
+            BrandId = product.BrandId,
+            Brand = product.Brand != null ? new BrandViewModel() 
+            {
+                Id = product.Brand.Id,
+                Name = product.Brand.Name
+            } : null
         };
 
     public static IEnumerable<ProductViewModel?> ToView(this IEnumerable<Product?> products) => products is null
