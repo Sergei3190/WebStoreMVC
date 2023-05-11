@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
-using WebStoreMVC.Domain.Identity;
+using WebStoreMVC.Domain.Entities.Identity;
 
 namespace WebStoreMVC.Data;
 

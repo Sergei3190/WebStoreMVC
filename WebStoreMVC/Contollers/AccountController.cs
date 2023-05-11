@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
-using WebStoreMVC.Domain.Identity;
+using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.ViewModels.Identity;
 
 namespace WebStoreMVC.Controllers;

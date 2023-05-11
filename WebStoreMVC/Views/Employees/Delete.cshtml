@@ -36,7 +36,7 @@
             </dd>
         </dl>
     
-        <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+        <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" asp-antiforgery="true">
             <input type="submit" value="Уволить" class="btn btn-danger" /> |
             <a asp-action="Index">К списку</a>
         </form>

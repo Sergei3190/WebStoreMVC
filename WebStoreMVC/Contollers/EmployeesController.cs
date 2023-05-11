@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Domain.Identity;
+using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
 
@@ -69,7 +69,8 @@ public class EmployeesController : Controller
 
     [HttpPost]
 	[Authorize(Roles = Role.Administrations)]
-	public async Task<IActionResult> Edit(EmployeeViewModel viewModel)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(EmployeeViewModel viewModel)
     {
         ArgumentNullException.ThrowIfNull(viewModel);
 
@@ -104,7 +105,8 @@ public class EmployeesController : Controller
 
     [HttpPost]
 	[Authorize(Roles = Role.Administrations)]
-	public async Task<IActionResult> DeleteConfirmed(int id)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (!await _service.DeleteAsync(id))
             return NotFound();

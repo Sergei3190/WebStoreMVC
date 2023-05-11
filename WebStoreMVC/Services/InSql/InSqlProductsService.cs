@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities;
@@ -56,12 +57,89 @@ namespace WebStoreMVC.Services.InSql
             return query;
         }
 
-        public Product? GetProductById(int id)
+        public async Task<Product?> GetProductById(int id)
         {
-            return _db.Products
+            return await _db.Products
                 .Include(p => p.Section)
                 .Include(p => p.Brand)
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id)
+                .ConfigureAwait(false);
+        }
+
+        public async Task<int> AddAsync(Product product)
+        {
+            ArgumentNullException.ThrowIfNull(product);
+
+            await _db.Products.AddAsync(product).ConfigureAwait(false);
+
+            await _db.SaveChangesAsync().ConfigureAwait(false);
+
+            _logger.LogInformation("Добавлен товар {0}", product);
+
+            return product.Id;
+        }
+
+        public async Task<bool> EditAsync(Product product)
+		{
+			ArgumentNullException.ThrowIfNull(product);
+
+			//var _product = await GetByIdAsync(product.Id).ConfigureAwait(false);
+			//if (_product is null)
+			//{
+			//	_logger.LogWarning("При изменении товара {0} - запись не найдена", product);
+			//	return false;
+			//}
+
+			//_product.Age = product.Age;
+			//_product.LastName = product.LastName;
+			//_product.FirstName = product.FirstName;
+			//_product.MiddleName = product.MiddleName;
+
+			//await _db.SaveChangesAsync().ConfigureAwait(false);
+
+			//_logger.LogInformation("Изменен товар {0}", product);
+
+			return true;
+		}
+
+		public async Task<bool> DeleteAsync(int id)
+		{            
+            var product = await _db.Products
+			    .Select(e => new Product() { Id = e.Id })
+			    .FirstOrDefaultAsync(e => e.Id == id)
+			    .ConfigureAwait(false);
+
+			if (product is null)
+			{
+				_logger.LogWarning("При удалении товара с id = {0} - запись не найдена", id);
+				return false;
+			}
+
+			_db.Products.Remove(product);
+
+			await _db.SaveChangesAsync().ConfigureAwait(false);
+
+			_logger.LogInformation("Удален товар {0} из корзины", product);
+
+			return true;
+		}
+
+        public SelectList PopulateSectionDropDownList(object? selectedSection = null)
+        {
+            var query = from s in _db.Sections
+                        orderby s.Name
+                        select s;
+
+            return new SelectList(query.AsNoTracking(), "SectionId", "Name", selectedSection);
+        }
+
+        public SelectList PopulateBrandDropDownList(object? selectedBrand = null)
+        {
+            var query = from s in _db.Brands
+                        orderby s.Name
+                        select s;
+
+            return new SelectList(query.AsNoTracking(), "BrandId", "Name", selectedBrand);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿@model CartViewModel
+﻿@model CartOrderViewModel
 
 @{
     ViewBag.Title = "Корзина";
 }
 
-<partial name="Partial/_CartItems" model="Model"/>
+<partial name="Partial/_CartItems" model="Model.Cart"/>
 <partial name="Partial/_DoAction" model="Model" />

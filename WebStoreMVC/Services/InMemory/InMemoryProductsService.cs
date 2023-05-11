@@ -1,4 +1,6 @@
-﻿using WebStoreMVC.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+using WebStoreMVC.Data;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Services.Interfaces;
 
@@ -36,7 +38,32 @@ namespace WebStoreMVC.Services.InMemory
             throw new NotImplementedException();
         }
 
-        public Product? GetProductById(int id)
+        public Task<Product?> GetProductById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+		public Task<bool> EditAsync(Product product)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<bool> DeleteAsync(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+        public SelectList PopulateSectionDropDownList(object? selectedSection = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SelectList PopulateBrandDropDownList(object? selectedBrand = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> AddAsync(Product product)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,4 @@
-﻿@model CartViewModel
+﻿@model CartOrderViewModel
 
 <section id="do_action">
 	<div class="container">
@@ -6,13 +6,7 @@
 			<h3>Что мы сделаем с этим дальше?</h3>
 			<p>Выберите, есть ли у вас код скидки или бонусные баллы, которые вы хотите использовать или хотите сделать скуидку на доставку.</p>
 		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<partial name="Partial/_ChoseArea"/>
-			</div>
-			<div class="col-sm-6">
-				<partial name="Partial/_TotalArea" model="Model.TotalPrice"/>
-			</div>
-		</div>
+		<partial name="Partial/_Checkout" model="Model.Order"
+				 view-data="@(new ViewDataDictionary(ViewData) { {"TotalPrice", Model.Cart.TotalPrice} })" />
 	</div>
 </section><!--/#do_action-->

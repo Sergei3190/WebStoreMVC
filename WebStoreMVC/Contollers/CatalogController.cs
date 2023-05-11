@@ -34,9 +34,9 @@ public class CatalogController : Controller
         });
     }
 
-	public IActionResult Details(int id)
+	public async Task<IActionResult> Details(int id)
 	{
-		var product = _service.GetProductById(id);
+		var product = await _service.GetProductById(id).ConfigureAwait(false);
 
 		if (product is null)
 			return NotFound();
