@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  db: 
+    environment:
+      - ACCEPT_EULA=Y
+      - U=SA
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd123
+      - MSSQL_PID=Express
+  webstoremvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB__Type=DockerDb
+    ports:
+      - "80"

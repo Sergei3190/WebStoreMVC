@@ -23,6 +23,7 @@ var connectionString = config.GetConnectionString(dbType);
 
 switch (dbType)
 {
+    case "DockerDb":
     case "SqlServer":
         builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
         {
