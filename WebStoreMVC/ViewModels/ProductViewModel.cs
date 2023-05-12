@@ -12,9 +12,13 @@ public class ProductViewModel : NamedViewModel, IImagedViewModel
     {
         ImageUrl = null!;
         Section = null!;
+        FormFile = null!;   
     }
 
     public int Order { get; set; }
+
+    [Display(Name = "File")]
+    public IFormFile FormFile { get; set; }
 
     public string? ImageUrl { get; set; }
 

@@ -10,7 +10,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Edit" asp-route-id="@Model.Id" asp-antiforgery="true">
+            <form id="editProduct" asp-action="Edit" asp-route-id="@Model.Id" asp-antiforgery="true" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
@@ -29,12 +29,21 @@
                     <select asp-for="BrandId" class="form-control" asp-items="@ViewBag.BrandId">
                         <option value="">-- Select Brand --</option>
                     </select>
-                    <span asp-validation-for="BrandId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Price" class="control-label"></label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" readonly/>
+                </div>
+                <div class="form-group">
+                    <a>
+                        <input asp-for="FormFile" type="file" id="fileInput" accept=".jpg" class="form-control hidden" onchange="uploadFile()" />
+                        <label for="fileInput" style="cursor:pointer">Загрузить изображение товара..</label>
+                    </a>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
@@ -47,3 +56,14 @@
         <a asp-action="Index">К списку</a>
     </div>
 </div>
+
+<script>
+    function uploadFile(){
+        var name = document.getElementById("fileInput").files[0].name;
+        replaceImageUrl(name);
+    }
+    function replaceImageUrl(name) {
+        var form = document.forms["editProduct"];
+        form.elements["ImageUrl"].setAttribute('value', name);
+    }
+</script>

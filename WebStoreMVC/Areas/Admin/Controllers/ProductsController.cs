@@ -1,15 +1,15 @@
-﻿using AutoMapper;
+﻿using System.Net;
+
+using AutoMapper;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-using NuGet.Packaging.Signing;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.ViewModels;
+using WebStoreMVC.ViewModels.Base;
 
 namespace WebStoreMVC.Areas.Admin.Controllers;
 
@@ -18,14 +18,17 @@ public class ProductsController : Controller
 {
     private readonly IProductsService _service;
     private readonly IMapper _mapper;
+    private readonly IFileService _fileService;
     private readonly ILogger<ProductsController> _logger;
 
     public ProductsController(IProductsService service,
         IMapper mapper,
+        IFileService fileService,
         ILogger<ProductsController> logger)
     {
         _service = service;
         _mapper = mapper;
+        _fileService = fileService;
         _logger = logger;
     }
 
@@ -76,6 +79,8 @@ public class ProductsController : Controller
             return View(viewModel);
 
         var product = _mapper.Map<Product>(viewModel);
+
+        await _fileService.SaveFileInRootDirectory(viewModel.FormFile, "images", "shop");
 
         if (viewModel.Id == 0)
             await _service.AddAsync(product);

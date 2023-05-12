@@ -10,6 +10,7 @@ using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Services.InCookies;
 using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Services.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +68,7 @@ builder.Services.AddScoped<IProductsService, InSqlProductsService>();
 builder.Services.AddScoped<IBlogsService, InSqlBlogsService>();
 builder.Services.AddScoped<ICartService, InCookiesCartService>();
 builder.Services.AddScoped<IOrderService, InSqlOrderService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(typeof(Program));

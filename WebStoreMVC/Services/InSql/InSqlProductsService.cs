@@ -101,6 +101,7 @@ namespace WebStoreMVC.Services.InSql
             }
 
             _product.Name = product.Name;
+            _product.ImageUrl = product.ImageUrl;
             _product.SectionId = product.SectionId;
             _product.BrandId = product.BrandId;
             _product.Price = product.Price;
