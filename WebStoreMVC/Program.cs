@@ -16,10 +16,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru-RU");
 
-builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
+var config = builder.Configuration;
+
+var dbType = config["DB:Type"];
+var connectionString = config.GetConnectionString(dbType);
+
+switch (dbType)
 {
-	opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
-});
+    case "SqlServer":
+        builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
+        {
+            opt.UseSqlServer(connectionString);
+        });
+        break;
+    case "Sqlite":
+        builder.Services.AddDbContext<WebStoreMVC_DB>(opt =>
+        {
+            opt.UseSqlite(connectionString, opt => opt.MigrationsAssembly("WebStoreMVC.DAL.Sqlite"));
+        });
+        break;
+}
 
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<WebStoreMVC_DB>()
@@ -79,8 +95,8 @@ using (var scope = app.Services.CreateScope())
 {
     var dbInitiService = scope.ServiceProvider.GetRequiredService<DbInitializer>();
     await dbInitiService.InitializeAsync(
-        canRemove: app.Configuration.GetValue("DbRecreate", false),
-        canAddTestData: app.Configuration.GetValue("DbAddTestData", false));
+        canRemove: app.Configuration.GetValue("DB:Recreate", false),
+        canAddTestData: app.Configuration.GetValue("DB:AddTestData", false));
 }
 
 if (app.Environment.IsDevelopment())

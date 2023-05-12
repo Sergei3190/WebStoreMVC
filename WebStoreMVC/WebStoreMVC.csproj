@@ -101,6 +101,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WebStore.DAL\WebStoreMVC.DAL.csproj" />
     <ProjectReference Include="..\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
+    <ProjectReference Include="..\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
   </ItemGroup>
 
 </Project>
