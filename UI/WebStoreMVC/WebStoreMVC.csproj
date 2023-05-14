@@ -100,9 +100,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebStore.DAL\WebStoreMVC.DAL.csproj" />
-    <ProjectReference Include="..\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
-    <ProjectReference Include="..\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Common\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\WebStoreMVC.ViewModels\WebStoreMVC.ViewModels.csproj" />
+    <ProjectReference Include="..\..\Data\WebStoreMVC.DAL\WebStoreMVC.DAL.csproj" />
+    <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
+    <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />
   </ItemGroup>
 
 </Project>
