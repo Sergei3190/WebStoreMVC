@@ -7,10 +7,12 @@ using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Interfaces.TestApi;
 using WebStoreMVC.Services.Data;
 using WebStoreMVC.Services.InCookies;
 using WebStoreMVC.Services.InSql;
 using WebStoreMVC.Services.Shared;
+using WebStoreMVC.WebApi.Clients.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,6 +91,8 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddHttpClient<IValueService, ValuesClient>(client => client.BaseAddress = new Uri(config["WebApi"]));
 
 var app = builder.Build();
 
