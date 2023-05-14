@@ -3,10 +3,10 @@
 using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.Controllers;
+namespace WebStoreMVC.Contollers;
 
 public class BlogsController : Controller
 {

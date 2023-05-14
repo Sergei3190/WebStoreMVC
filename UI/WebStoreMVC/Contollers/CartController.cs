@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.Controllers;
+namespace WebStoreMVC.Contollers;
 public class CartController : Controller
 {
 

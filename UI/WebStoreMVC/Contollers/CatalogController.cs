@@ -3,12 +3,11 @@
 using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Services.Mappers.Mappings;
 using WebStoreMVC.ViewModels;
 
-using WebStoreMVCInfrastructure.Mappings;
-
-namespace WebStoreMVC.Controllers;
+namespace WebStoreMVC.Contollers;
 public class CatalogController : Controller
 {
     private readonly IProductsService _service;
@@ -34,13 +33,13 @@ public class CatalogController : Controller
         });
     }
 
-	public async Task<IActionResult> Details(int id)
-	{
-		var product = await _service.GetProductById(id).ConfigureAwait(false);
+    public async Task<IActionResult> Details(int id)
+    {
+        var product = await _service.GetProductById(id).ConfigureAwait(false);
 
-		if (product is null)
-			return NotFound();
+        if (product is null)
+            return NotFound();
 
-		return View(product.ToView());
-	}
+        return View(product.ToView());
+    }
 }

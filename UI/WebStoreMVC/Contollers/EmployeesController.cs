@@ -2,9 +2,10 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Identity;
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Contollers;

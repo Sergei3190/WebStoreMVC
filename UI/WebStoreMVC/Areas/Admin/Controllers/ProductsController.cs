@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Identity;
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 using WebStoreMVC.ViewModels.Base;
 

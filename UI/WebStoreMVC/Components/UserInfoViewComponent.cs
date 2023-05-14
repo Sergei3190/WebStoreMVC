@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 
 namespace WebStoreMVC.Components;
 

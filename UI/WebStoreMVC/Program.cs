@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
-using WebStoreMVC.Data;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
+using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Services.Data;
 using WebStoreMVC.Services.InCookies;
 using WebStoreMVC.Services.InSql;
-using WebStoreMVC.Services.Interfaces;
 using WebStoreMVC.Services.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -88,7 +88,7 @@ builder.Services.AddScoped<IOrderService, InSqlOrderService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<DbInitializer>();
 
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

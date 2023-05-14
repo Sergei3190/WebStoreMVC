@@ -3,40 +3,40 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using WebStoreMVC.Services.Interfaces;
+using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.Controllers;
+namespace WebStoreMVC.Contollers;
 
 [Authorize]
 public class UserProfileController : Controller
 {
-	private readonly IProductsService _service;
-	private readonly IMapper _mapper;
+    private readonly IProductsService _service;
+    private readonly IMapper _mapper;
 
-	public UserProfileController(IProductsService service, IMapper mapper)
-	{
-		_service = service;
-		_mapper = mapper;
-	}
+    public UserProfileController(IProductsService service, IMapper mapper)
+    {
+        _service = service;
+        _mapper = mapper;
+    }
 
-	public IActionResult Index()
-	{
-		return View();
-	}
+    public IActionResult Index()
+    {
+        return View();
+    }
 
     public async Task<IActionResult> Orders([FromServices] IOrderService service)
     {
-		var orders = await service.GetUserOrdersAsync(User!.Identity!.Name!);
+        var orders = await service.GetUserOrdersAsync(User!.Identity!.Name!);
 
         return View(orders.Select(o => new UserOrderViewModel()
-		{
-			Id = o.Id,
-			Date = o.Date,
-			Address = o.Address,
-			Phone = o.Phone,
-			Description = o.Description,	
-			TotalPrice = o.TotalPrice
-		}));
+        {
+            Id = o.Id,
+            Date = o.Date,
+            Address = o.Address,
+            Phone = o.Phone,
+            Description = o.Description,
+            TotalPrice = o.TotalPrice
+        }));
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.ViewModels.Identity;
 
-namespace WebStoreMVC.Controllers;
+namespace WebStoreMVC.Contollers;
 
 [Authorize]
 public class AccountController : Controller
@@ -16,8 +17,8 @@ public class AccountController : Controller
     public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
     {
         _userManager = userManager;
-        _signInManager = signInManager; 
-        _logger = logger;   
+        _signInManager = signInManager;
+        _logger = logger;
     }
 
     [AllowAnonymous]
@@ -33,18 +34,18 @@ public class AccountController : Controller
 
         var user = new User()
         {
-            UserName = viewModel.UserName,  
+            UserName = viewModel.UserName,
         };
 
         var creation_result = await _userManager.CreateAsync(user, viewModel.Password);
 
-        if (creation_result.Succeeded) 
+        if (creation_result.Succeeded)
         {
             _logger.LogInformation("Пользователь {0} зарегистрирован", user);
 
             await _userManager.AddToRoleAsync(user, Role.Users);
             await _signInManager.SignInAsync(user, false);
-            return RedirectToAction("Index", "Home");   
+            return RedirectToAction("Index", "Home");
         }
 
         foreach (var error in creation_result.Errors)
@@ -53,7 +54,7 @@ public class AccountController : Controller
         var errorInfo = string.Join(", ", creation_result.Errors.Select(e => e.Description));
         _logger.LogWarning("Ошибка при регистрации пользователя {0}: {1}", user, errorInfo);
 
-        return View(viewModel);  
+        return View(viewModel);
     }
 
     [AllowAnonymous]
@@ -61,19 +62,19 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-	[AllowAnonymous]
-	public async Task<IActionResult> Login(LoginViewModel viewModel) 
+    [AllowAnonymous]
+    public async Task<IActionResult> Login(LoginViewModel viewModel)
     {
         if (!ModelState.IsValid)
             return View(viewModel);
 
         var loginResault = await _signInManager.PasswordSignInAsync(
             viewModel.UserName,
-            viewModel.Password, 
+            viewModel.Password,
             viewModel.RememberMe,
-            lockoutOnFailure : true);
+            lockoutOnFailure: true);
 
-        if (loginResault.Succeeded) 
+        if (loginResault.Succeeded)
         {
             _logger.LogInformation("Пользователь {0} успешно вошёл в систему", viewModel.UserName);
 
@@ -98,10 +99,10 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
-	[AllowAnonymous]
-	public IActionResult AccessDenied(string? returnUrl)
+    [AllowAnonymous]
+    public IActionResult AccessDenied(string? returnUrl)
     {
-        ViewBag.ReturnUrl = returnUrl;  
+        ViewBag.ReturnUrl = returnUrl;
         return View();
     }
 }
