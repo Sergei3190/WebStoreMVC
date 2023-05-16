@@ -18,4 +18,8 @@
     <ProjectReference Include="..\WebStoreMVC.Interfaces\WebStoreMVC.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
 </Project>
