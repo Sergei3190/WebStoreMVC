@@ -3,7 +3,7 @@
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 
-namespace WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
+namespace WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
 
 public static class SectionDtoMapper
 {

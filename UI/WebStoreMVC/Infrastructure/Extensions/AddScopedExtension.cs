@@ -13,10 +13,10 @@ namespace WebStoreMVC.Infrastructure.Extensions
 		{
 			ArgumentNullException.ThrowIfNull(nameof(services));
 
-			services.AddScoped<ICartService, InCookiesCartService>();
-			services.AddScoped<IFileService, FileService>();
+			services
+				.AddScoped<ICartService, InCookiesCartService>()
+				.AddScoped<IFileService, FileService>();
 
-			services.AddScoped<IEmployeesService, InSqlEmployeesService>();
 			services.AddScoped<IProductsService, InSqlProductsService>();
 			services.AddScoped<IBlogsService, InSqlBlogsService>();
 			services.AddScoped<IOrderService, InSqlOrderService>();

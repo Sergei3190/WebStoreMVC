@@ -100,6 +100,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\WebStoreMVC.DAL\WebStoreMVC.DAL.csproj" />
     <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />

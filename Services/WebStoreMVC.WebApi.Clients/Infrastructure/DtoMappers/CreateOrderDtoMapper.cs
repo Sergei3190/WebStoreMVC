@@ -1,7 +1,7 @@
 ﻿using WebStoreMVC.Dto;
 using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
+namespace WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
 
 public static class CreateOrderDtoMapper
 {

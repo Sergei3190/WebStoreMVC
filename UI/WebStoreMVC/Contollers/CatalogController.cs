@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Infrastructure.Mappings;
+using WebStoreMVC.Infrastructure.Mappers;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 

@@ -4,7 +4,7 @@ using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Domain.Entities.Orders;
 using WebStoreMVC.Dto;
 
-namespace WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
+namespace WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
 
 public static class OrderDtoMapper
 {

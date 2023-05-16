@@ -1,9 +1,9 @@
 ﻿using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.Infrastructure.Mappings;
+namespace WebStoreMVC.Infrastructure.Mappers;
 
-public static class EmployeesMapper
+public static class EmployeeMapper
 {
 	public static EmployeeViewModel? ToView(this Employee? employee) => employee is null
 		? null
