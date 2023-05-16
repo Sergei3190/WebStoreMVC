@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{70A962BD-254A-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Domain", "Common\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj", "{E1974DC8-4CD9-45F7-BC10-61AAC0FBE022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.ViewModels", "Common\WebStoreMVC.ViewModels\WebStoreMVC.ViewModels.csproj", "{83EDD51A-8EB5-478E-A0C0-83445B1341A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.ViewModels", "Common\WebStoreMVC.ViewModels\WebStoreMVC.ViewModels.csproj", "{83EDD51A-8EB5-478E-A0C0-83445B1341A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.DAL", "Data\WebStoreMVC.DAL\WebStoreMVC.DAL.csproj", "{21694699-4D79-4DD8-AC19-CE344100F5C4}"
 EndProject
@@ -27,13 +27,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.DAL.Sqlite", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC", "UI\WebStoreMVC\WebStoreMVC.csproj", "{A6CE257B-6365-4AD4-9D2F-E55B62DC5963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.WebApi", "Services\WebStoreMVC.WebApi\WebStoreMVC.WebApi.csproj", "{42750684-1DAB-4FF1-BDB2-18EA8493E214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.WebApi", "Services\WebStoreMVC.WebApi\WebStoreMVC.WebApi.csproj", "{42750684-1DAB-4FF1-BDB2-18EA8493E214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.WebApi.Clients", "Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj", "{B6071FC7-020F-420B-A165-A7090C26E593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.WebApi.Clients", "Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj", "{B6071FC7-020F-420B-A165-A7090C26E593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Interfaces", "Services\WebStoreMVC.Interfaces\WebStoreMVC.Interfaces.csproj", "{27015335-B757-4BFC-B52A-415690C924BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Interfaces", "Services\WebStoreMVC.Interfaces\WebStoreMVC.Interfaces.csproj", "{27015335-B757-4BFC-B52A-415690C924BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Services", "Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj", "{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Services", "Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj", "{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Dto", "Common\WebStoreMVC.Dto\WebStoreMVC.Dto.csproj", "{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{B6071FC7-020F-420B-A165-A7090C26E593} = {FB55461C-54AB-4E35-B58E-46F481FEB11B}
 		{27015335-B757-4BFC-B52A-415690C924BD} = {FB55461C-54AB-4E35-B58E-46F481FEB11B}
 		{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33} = {FB55461C-54AB-4E35-B58E-46F481FEB11B}
+		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2} = {E78478D4-7491-424C-8F12-03AB626ED184}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {541815FD-1FE8-47D6-A311-4A97EC8D2C28}
