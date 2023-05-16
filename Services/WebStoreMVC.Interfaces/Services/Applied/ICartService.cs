@@ -1,6 +1,6 @@
 ﻿using WebStoreMVC.ViewModels;
 
-namespace WebStoreMVC.Interfaces.Services;
+namespace WebStoreMVC.Interfaces.Services.Applied;
 public interface ICartService
 {
     void Add(int productId);

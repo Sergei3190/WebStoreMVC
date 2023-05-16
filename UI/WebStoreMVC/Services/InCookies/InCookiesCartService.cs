@@ -3,6 +3,7 @@
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Infrastructure.Mappings;
 using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Services.InCookies;

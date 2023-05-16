@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Contollers;

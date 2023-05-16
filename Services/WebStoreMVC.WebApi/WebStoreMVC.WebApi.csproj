@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
+  </ItemGroup>
+
 </Project>

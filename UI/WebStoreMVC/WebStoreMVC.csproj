@@ -87,6 +87,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -99,9 +100,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
-    <ProjectReference Include="..\..\Common\WebStoreMVC.ViewModels\WebStoreMVC.ViewModels.csproj" />
-    <ProjectReference Include="..\..\Data\WebStoreMVC.DAL\WebStoreMVC.DAL.csproj" />
     <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />
