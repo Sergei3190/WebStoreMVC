@@ -3,7 +3,7 @@
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 
-namespace WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
+namespace WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
 
 public static class BrandDtoMapper
 {

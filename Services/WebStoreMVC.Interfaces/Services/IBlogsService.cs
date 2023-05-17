@@ -5,5 +5,5 @@ public interface IBlogsService
 {
     IEnumerable<Blog> GetAll(bool? isMain = false);
 
-    Task<Blog?> GetByIdAsync(int id);
+    Task<Blog?> GetByIdAsync(int id, CancellationToken cansel = default);
 }

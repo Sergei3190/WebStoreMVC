@@ -4,7 +4,7 @@ using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.WebApi.Clients.Base;
-using WebStoreMVC.WebApi.Infrastructure.Mappers;
+using WebStoreMVC.WebApi.Clients.Infrastructure.Mappers;
 
 namespace WebStoreMVC.WebApi.Clients.Employees;
 

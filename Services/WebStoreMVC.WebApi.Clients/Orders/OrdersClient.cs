@@ -5,7 +5,7 @@ using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;
 using WebStoreMVC.WebApi.Clients.Base;
-using WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
+using WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
 
 namespace WebStoreMVC.WebApi.Clients.Orders;
 

@@ -1,7 +1,7 @@
 ﻿using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 
-namespace WebStoreMVC.WebApi.Infrastructure.Mappers;
+namespace WebStoreMVC.WebApi.Clients.Infrastructure.Mappers;
 
 public static class EmployeeDtoMapper
 {

@@ -6,7 +6,7 @@ using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.WebApi.Clients.Base;
-using WebStoreMVC.WebApi.Clients.Infrastrucure.DtoMappers;
+using WebStoreMVC.WebApi.Clients.Infrastructure.DtoMappers;
 
 namespace WebStoreMVC.WebApi.Clients.Products;
 
@@ -20,25 +20,25 @@ public class ProductsClient : BaseClient, IProductsService
 	public IEnumerable<Section> GetSections()
 	{
 		var result = Get<IEnumerable<SectionDto>>($"{Address}/sections");
-		return result.FromDto();
+		return result?.FromDto()!;
 	}
 
 	public Section? GetSectionById(int id)
 	{
 		var result = Get<SectionDto>($"{Address}/sections/{id}");
-		return result.FromDto();
+		return result?.FromDto()!;
 	}
 
 	public IEnumerable<Brand> GetBrands()
 	{
 		var result = Get<IEnumerable<BrandDto>>($"{Address}/brands");
-		return result.FromDto();
+		return result?.FromDto()!;
 	}
 
 	public Brand? GetBrandById(int id)
 	{
 		var result = Get<BrandDto>($"{Address}/brands/{id}");
-		return result.FromDto();
+		return result?.FromDto()!;
 	}
 
 	public IEnumerable<Product> GetProducts(ProductFilter? filter = null)

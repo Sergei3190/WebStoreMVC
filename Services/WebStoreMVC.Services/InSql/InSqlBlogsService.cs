@@ -17,6 +17,6 @@ namespace WebStoreMVC.Services.InSql
 
         public IEnumerable<Blog> GetAll(bool? isMain) => isMain.HasValue && isMain.Value ? _db.Blogs.Where(b => b.IsMain) : _db.Blogs;
 
-        public async Task<Blog?> GetByIdAsync(int id) => await _db.Blogs.FirstOrDefaultAsync(b => b.Id == id).ConfigureAwait(false);
+        public async Task<Blog?> GetByIdAsync(int id, CancellationToken cansel = default) => await _db.Blogs.FirstOrDefaultAsync(b => b.Id == id, cansel).ConfigureAwait(false);
     }
 }

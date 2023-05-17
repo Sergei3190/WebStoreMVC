@@ -1,5 +1,6 @@
 ﻿using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.Interfaces.TestApi;
+using WebStoreMVC.WebApi.Clients.Blogs;
 using WebStoreMVC.WebApi.Clients.Employees;
 using WebStoreMVC.WebApi.Clients.Orders;
 using WebStoreMVC.WebApi.Clients.Products;
@@ -17,6 +18,7 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddTypedClient<IValueService, ValuesClient>()
 				.AddTypedClient<IProductsService, ProductsClient>()
 				.AddTypedClient<IOrderService, OrdersClient>()
+				.AddTypedClient<IBlogsService, BlogsClient>()
 				.AddTypedClient<IEmployeesService, EmployeesClient>();
 		}
 	}
