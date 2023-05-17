@@ -31,6 +31,7 @@ namespace WebStoreMVC.Services.InSql
                 .Include(o => o.User)
                 .Where(o => o.User.UserName == userName)
                 .Include(o => o.Items)
+                    .ThenInclude(i =>i.Product)
                 .ToArrayAsync(cancel)
                 .ConfigureAwait(false);
 
@@ -43,7 +44,8 @@ namespace WebStoreMVC.Services.InSql
                 .Where(o => o.Id == id)
                 .Include(o => o.User)
                 .Include(o => o.Items)
-                .FirstOrDefaultAsync(cancel)
+				   .ThenInclude(i => i.Product)
+				.FirstOrDefaultAsync(cancel)
                 .ConfigureAwait(false);
 
             return order;

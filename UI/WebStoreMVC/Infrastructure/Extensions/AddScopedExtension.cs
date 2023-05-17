@@ -18,7 +18,6 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddScoped<IFileService, FileService>();
 
 			services.AddScoped<IBlogsService, InSqlBlogsService>();
-			services.AddScoped<IOrderService, InSqlOrderService>();
 
 			services.AddScoped<DbInitializer>();
 		}
