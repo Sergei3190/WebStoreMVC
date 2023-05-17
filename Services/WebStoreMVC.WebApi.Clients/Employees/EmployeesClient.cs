@@ -10,7 +10,7 @@ namespace WebStoreMVC.WebApi.Clients.Employees;
 
 public class EmployeesClient : BaseClient, IEmployeesService
 {
-	public EmployeesClient(HttpClient httpClient) 
+	public EmployeesClient(HttpClient httpClient)
 		: base(httpClient, "api/employees")
 	{
 	}
@@ -41,6 +41,8 @@ public class EmployeesClient : BaseClient, IEmployeesService
 
 	public async Task<int> AddAsync(Employee employee)
 	{
+		ArgumentNullException.ThrowIfNull(nameof(employee));
+
 		var response = await PostAsync(Address, employee).ConfigureAwait(false);
 
 		var addedEmployee = await response
@@ -59,6 +61,8 @@ public class EmployeesClient : BaseClient, IEmployeesService
 
 	public async Task<bool> EditAsync(Employee employee)
 	{
+		ArgumentNullException.ThrowIfNull(nameof(employee));
+
 		var response = await PutAsync(Address, employee).ConfigureAwait(false);
 
 		return await response

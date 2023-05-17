@@ -3,6 +3,7 @@
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.Services.Data;
+using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Services.InMemory
 {
@@ -38,32 +39,32 @@ namespace WebStoreMVC.Services.InMemory
             throw new NotImplementedException();
         }
 
-        public Task<Product?> GetProductById(int id)
+        public Task<Product?> GetProductById(int id, CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> EditAsync(Product product)
+        public Task<bool> EditAsync(Product product, CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public Task<bool> DeleteAsync(int id, CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddAsync(Product product)
+        public Task<int> AddAsync(Product product, CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList()
+        public Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList(CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList()
+        public Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList(CancellationToken cancel = default)
         {
             throw new NotImplementedException();
         }

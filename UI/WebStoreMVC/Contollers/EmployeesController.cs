@@ -24,7 +24,7 @@ public class EmployeesController : Controller
 
     public IActionResult Index(int? page, int pageSize = 15)
     {
-        IEnumerable<Employee> employees = null;
+        IEnumerable<Employee> employees = null!;
 
         if (page is { } _page && pageSize > 0)
             employees = _service.Get(_page * pageSize, pageSize);

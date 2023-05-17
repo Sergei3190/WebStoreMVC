@@ -3,6 +3,6 @@
 namespace WebStoreMVC.Dto;
 public class CreateOrderDto
 {
-    public OrderViewModel Order { get; init; }
-	public IEnumerable<OrderItemDto> Items { get; init; }
+	public OrderViewModel Order { get; init; } = null!;
+	public IEnumerable<OrderItemDto> Items { get; init; } = null!;
 }

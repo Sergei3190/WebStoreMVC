@@ -17,5 +17,17 @@ public static class BrandDtoMapper
 			Order = brand.Order,
 		};
 
+	[return: NotNullIfNotNull("brand")]
+	public static Brand? FromDto(this BrandDto? brand) => brand is null
+		? null
+		: new Brand
+		{
+			Id = brand.Id,
+			Name = brand.Name,
+			Order = brand.Order,
+		};
+
 	public static IEnumerable<BrandDto> ToDto(this IEnumerable<Brand>? brands) => brands?.Select(ToDto)!;
+
+	public static IEnumerable<Brand> FromDto(this IEnumerable<BrandDto>? brands) => brands?.Select(FromDto)!;
 }

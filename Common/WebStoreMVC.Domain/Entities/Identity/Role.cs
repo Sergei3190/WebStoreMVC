@@ -6,5 +6,5 @@ public class Role : IdentityRole
 {
     public const string Administrations = "Administrations";
     public const string Users = "Users";
-    public override string ToString() => Name;
+    public override string ToString() => Name!;
 }

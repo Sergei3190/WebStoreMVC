@@ -17,7 +17,6 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddScoped<ICartService, InCookiesCartService>()
 				.AddScoped<IFileService, FileService>();
 
-			services.AddScoped<IProductsService, InSqlProductsService>();
 			services.AddScoped<IBlogsService, InSqlBlogsService>();
 			services.AddScoped<IOrderService, InSqlOrderService>();
 

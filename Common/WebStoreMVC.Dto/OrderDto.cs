@@ -6,5 +6,5 @@ public class OrderDto
 	public string Phone { get; init; } = null!;
 	public string? Description { get; init; }
 	public DateTimeOffset Date { get; init; }
-	public IEnumerable<OrderItemDto> Items { get; init; }
+	public IEnumerable<OrderItemDto> Items { get; init; } = null!;
 }

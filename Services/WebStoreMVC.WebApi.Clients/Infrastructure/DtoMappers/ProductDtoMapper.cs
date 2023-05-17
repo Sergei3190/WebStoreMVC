@@ -21,5 +21,20 @@ public static class ProductDtoMapper
 			Brand = product.Brand?.FromDto(),
 		};
 
+	[return: NotNullIfNotNull("product")]
+	public static ProductDto? ToDto(this Product? product) => product is null
+	? null
+	: new ProductDto
+	{
+		Id = product.Id,
+		Name = product.Name,
+		Order = product.Order,
+		ImageUrl = product.ImageUrl is { } imageUrl ? imageUrl : null!,
+		Price = product.Price,
+		Section = new SectionDto() { Id = product.SectionId },
+		Brand = product.BrandId is { } brandId ? new BrandDto() { Id = brandId } : null,
+	};
+
 	public static IEnumerable<Product> FromDto(this IEnumerable<ProductDto>? products) => products?.Select(FromDto)!;
+
 }

@@ -5,25 +5,25 @@ using WebStoreMVC.Domain.Entities;
 namespace WebStoreMVC.Interfaces.Services;
 public interface IProductsService
 {
-    IEnumerable<Section> GetSections();
+	IEnumerable<Section> GetSections();
 
-    IEnumerable<Brand> GetBrands();
+	IEnumerable<Brand> GetBrands();
 
-    IEnumerable<Product> GetProducts(ProductFilter? filter = null);
+	IEnumerable<Product> GetProducts(ProductFilter? filter = null);
 
-    Section? GetSectionById(int id);
+	Section? GetSectionById(int id);
 
-    Brand? GetBrandById(int id);
+	Brand? GetBrandById(int id);
 
-    Task<Product?> GetProductById(int id);
+	Task<Product?> GetProductById(int id, CancellationToken cancel = default);
 
-    Task<int> AddAsync(Product product);
+	Task<int> AddAsync(Product product, CancellationToken cancel = default);
 
-    Task<bool> EditAsync(Product product);
+	Task<bool> EditAsync(Product product, CancellationToken cancel = default);
 
-    Task<bool> DeleteAsync(int id);
+	Task<bool> DeleteAsync(int id, CancellationToken cancel = default);
 
-    Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList();
+	Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList(CancellationToken cancel = default);
 
-    Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList();
+	Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList(CancellationToken cancel = default);
 }

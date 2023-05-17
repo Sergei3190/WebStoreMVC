@@ -86,7 +86,7 @@ public class InCookiesCartService : ICartService
 
 		var product = _productsService.GetProducts(new ProductFilter() { Ids = cart.Items.Select(i => i.ProductId).ToArray() });
 
-		var products_views = product.ToView().ToDictionary(p => p.Id);
+		var products_views = product.ToView().ToDictionary(p => p!.Id);
 
 		return new CartViewModel()
 		{

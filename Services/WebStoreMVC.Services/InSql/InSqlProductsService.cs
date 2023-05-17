@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Services.InSql
 {
@@ -58,42 +59,42 @@ namespace WebStoreMVC.Services.InSql
             return query;
         }
 
-        public async Task<Product?> GetProductById(int id)
+        public async Task<Product?> GetProductById(int id, CancellationToken cancel = default)
         {
             return await _db.Products
                 .Include(p => p.Section)
                 .Include(p => p.Brand)
-                .FirstOrDefaultAsync(p => p.Id == id)
+                .FirstOrDefaultAsync(p => p.Id == id, cancel)
                 .ConfigureAwait(false);
         }
 
-        public async Task<int> AddAsync(Product product)
+        public async Task<int> AddAsync(Product product, CancellationToken cancel = default)
         {
             ArgumentNullException.ThrowIfNull(product);
 
             var lastItem = await _db.Products
                 .OrderBy(p => p.Order)
                 .Select(p => new { p.Order })
-                .LastOrDefaultAsync()
+                .LastOrDefaultAsync(cancel)
                 .ConfigureAwait(false);
 
             if (lastItem is { Order: { } lastOrder })
                 product.Order = ++lastOrder;
 
-            await _db.Products.AddAsync(product).ConfigureAwait(false);
+            await _db.Products.AddAsync(product, cancel).ConfigureAwait(false);
 
-            await _db.SaveChangesAsync().ConfigureAwait(false);
+            await _db.SaveChangesAsync(cancel).ConfigureAwait(false);
 
             _logger.LogInformation("Добавлен товар {0}", product);
 
             return product.Id;
         }
 
-        public async Task<bool> EditAsync(Product product)
+        public async Task<bool> EditAsync(Product product, CancellationToken cancel = default)
         {
             ArgumentNullException.ThrowIfNull(product);
 
-            var _product = await GetProductById(product.Id).ConfigureAwait(false);
+            var _product = await GetProductById(product.Id, cancel).ConfigureAwait(false);
 
             if (_product is null)
             {
@@ -107,18 +108,18 @@ namespace WebStoreMVC.Services.InSql
             _product.BrandId = product.BrandId;
             _product.Price = product.Price;
 
-            await _db.SaveChangesAsync().ConfigureAwait(false);
+            await _db.SaveChangesAsync(cancel).ConfigureAwait(false);
 
             _logger.LogInformation("Изменен товар {0}", product);
 
             return true;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancel = default)
         {
             var product = await _db.Products
                 .Select(e => new Product() { Id = e.Id })
-                .FirstOrDefaultAsync(e => e.Id == id)
+                .FirstOrDefaultAsync(e => e.Id == id, cancel)
                 .ConfigureAwait(false);
 
             if (product is null)
@@ -129,14 +130,14 @@ namespace WebStoreMVC.Services.InSql
 
             _db.Products.Remove(product);
 
-            await _db.SaveChangesAsync().ConfigureAwait(false);
+            await _db.SaveChangesAsync(cancel).ConfigureAwait(false);
 
             _logger.LogInformation("Удален товар {0} из корзины", product);
 
             return true;
         }
 
-        public async Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList()
+        public async Task<IEnumerable<SelectListItem>> PopulateSectionDropDownList(CancellationToken cancel = default)
         {
             var query = from s in _db.Sections
                         orderby s.Name
@@ -144,14 +145,15 @@ namespace WebStoreMVC.Services.InSql
                         {
                             Text = s.Name,
                             Value = s.Id.ToString()
+
                         };
 
             return await query
-                .ToArrayAsync()
+                .ToArrayAsync(cancel)
                 .ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList()
+        public async Task<IEnumerable<SelectListItem>> PopulateBrandDropDownList(CancellationToken cancel = default)
         {
             var query = from s in _db.Brands
                         orderby s.Name
@@ -162,7 +164,7 @@ namespace WebStoreMVC.Services.InSql
                         };
 
             return await query
-              .ToArrayAsync()
+              .ToArrayAsync(cancel)
               .ConfigureAwait(false);
         }
     }
