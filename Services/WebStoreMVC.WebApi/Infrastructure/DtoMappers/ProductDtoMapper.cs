@@ -17,7 +17,9 @@ public static class ProductDtoMapper
 			Order = product.Order,
 			ImageUrl = product.ImageUrl!,
 			Price = product.Price,
-			Section = product.Section.ToDto(),
+			SectionId = product.SectionId,
+			Section = product.Section?.ToDto(),
+			BrandId = product.BrandId,	
 			Brand = product.Brand?.ToDto(),
 		};
 
@@ -31,7 +33,9 @@ public static class ProductDtoMapper
 			Order = product.Order,
 			ImageUrl = product.ImageUrl,
 			Price = product.Price,
-			Section = product.Section.FromDto(),
+			SectionId = product.SectionId,
+			Section = product.Section?.FromDto()!,
+			BrandId = product.BrandId,
 			Brand = product.Brand?.FromDto(),
 		};
 

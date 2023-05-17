@@ -17,8 +17,10 @@ public static class ProductDtoMapper
 			Order = product.Order,
 			ImageUrl = product.ImageUrl,
 			Price = product.Price,
-			Section = product.Section.FromDto(),
+			Section = product.Section?.FromDto()!,
+			SectionId = product.SectionId,
 			Brand = product.Brand?.FromDto(),
+			BrandId = product.BrandId,
 		};
 
 	[return: NotNullIfNotNull("product")]
@@ -31,8 +33,10 @@ public static class ProductDtoMapper
 		Order = product.Order,
 		ImageUrl = product.ImageUrl is { } imageUrl ? imageUrl : null!,
 		Price = product.Price,
-		Section = new SectionDto() { Id = product.SectionId },
-		Brand = product.BrandId is { } brandId ? new BrandDto() { Id = brandId } : null,
+		SectionId = product.SectionId,
+		Section = product.Section?.ToDto(),
+		BrandId = product.BrandId,
+		Brand = product.Brand?.ToDto(),
 	};
 
 	public static IEnumerable<Product> FromDto(this IEnumerable<ProductDto>? products) => products?.Select(FromDto)!;
