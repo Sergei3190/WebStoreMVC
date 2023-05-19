@@ -55,10 +55,22 @@ services.AddControllersWithViews(opt =>
 	opt.Conventions.Add(new AreasConvension());
 });
 
-builder.Services.AddHttpClient("WebStoreMVC.WebApi.Identity", client => client.BaseAddress = new Uri(config["WebApi"]))
+builder.Services.AddHttpClient("WebStoreMVC.WebApi.Identity", client => 
+{
+	client.DefaultRequestHeaders.Add("Accept", "application/json");
+	client.DefaultRequestHeaders.Add("Accept", "application/xml");
+
+	client.BaseAddress = new Uri(config["WebApi"]);
+})
 	.AddTypedIdentityClients();
 
-services.AddHttpClient("WebStoreMVC.WebApi", client => client.BaseAddress = new Uri(config["WebApi"]))
+services.AddHttpClient("WebStoreMVC.WebApi", client => 
+{
+	client.DefaultRequestHeaders.Add("Accept", "application/json");
+	client.DefaultRequestHeaders.Add("Accept", "application/xml");
+
+	client.BaseAddress = new Uri(config["WebApi"]);
+})
 	.AddTypedClients();
 
 services.AddScopedServices();

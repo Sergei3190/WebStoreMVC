@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
@@ -55,7 +56,11 @@ services.Configure<IdentityOptions>(opt =>
 	opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
 });
 
-services.AddControllers();
+services.AddControllers(opt =>
+{
+	opt.InputFormatters.Add(new XmlSerializerInputFormatter(opt));
+	opt.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+});
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
