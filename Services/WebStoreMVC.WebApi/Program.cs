@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
+using WebStoreMVC.Services.Data;
 using WebStoreMVC.WebApi.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +62,14 @@ services.AddSwaggerGen();
 services.AddScopedServices();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+	var dbInitiService = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+	await dbInitiService.InitializeAsync(
+		canRemove: app.Configuration.GetValue("DB:Recreate", false),
+		canAddTestData: app.Configuration.GetValue("DB:AddTestData", false));
+}
 
 if (app.Environment.IsDevelopment())
 {

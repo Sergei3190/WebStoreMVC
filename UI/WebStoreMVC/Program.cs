@@ -1,13 +1,10 @@
 using System.Globalization;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
-using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Infrastructure.Extensions;
-using WebStoreMVC.Services.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,28 +14,7 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 
-var dbType = config["DB:Type"];
-var connectionString = config.GetConnectionString(dbType);
-
-switch (dbType)
-{
-	case "DockerDb":
-	case "SqlServer":
-		services.AddDbContext<WebStoreMVC_DB>(opt =>
-		{
-			opt.UseSqlServer(connectionString);
-		});
-		break;
-	case "Sqlite":
-		services.AddDbContext<WebStoreMVC_DB>(opt =>
-		{
-			opt.UseSqlite(connectionString, opt => opt.MigrationsAssembly("WebStoreMVC.DAL.Sqlite"));
-		});
-		break;
-}
-
 services.AddIdentity<User, Role>()
-	.AddEntityFrameworkStores<WebStoreMVC_DB>()
 	.AddDefaultTokenProviders();
 
 services.Configure<IdentityOptions>(opt =>
@@ -79,22 +55,17 @@ services.AddControllersWithViews(opt =>
 	opt.Conventions.Add(new AreasConvension());
 });
 
-services.AddScopedServices();
+builder.Services.AddHttpClient("WebStoreMVC.WebApi.Identity", client => client.BaseAddress = new Uri(config["WebApi"]))
+	.AddTypedIdentityClients();
 
 services.AddHttpClient("WebStoreMVC.WebApi", client => client.BaseAddress = new Uri(config["WebApi"]))
 	.AddTypedClients();
 
+services.AddScopedServices();
+
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-	var dbInitiService = scope.ServiceProvider.GetRequiredService<DbInitializer>();
-	await dbInitiService.InitializeAsync(
-		canRemove: app.Configuration.GetValue("DB:Recreate", false),
-		canAddTestData: app.Configuration.GetValue("DB:AddTestData", false));
-}
 
 if (app.Environment.IsDevelopment())
 {
