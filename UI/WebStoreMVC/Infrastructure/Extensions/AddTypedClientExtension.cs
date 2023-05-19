@@ -24,7 +24,8 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddTypedClient<IProductsService, ProductsClient>()
 				.AddTypedClient<IOrderService, OrdersClient>()
 				.AddTypedClient<IBlogsService, BlogsClient>()
-				.AddTypedClient<IEmployeesService, EmployeesClient>();
+				.AddTypedClient<IEmployeesService, EmployeesClient>()
+				.AddPolicyHandlers();
 		}
 
 		public static void AddTypedIdentityClients(this IHttpClientBuilder clientBuilder)
@@ -42,7 +43,8 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddTypedClient<IUserLoginStore<User>, UsersClient>()
 				.AddTypedClient<IUserClaimStore<User>, UsersClient>()
 				.AddTypedClient<IRolesClient, RolesClient>()
-				.AddTypedClient<IRoleStore<Role>, RolesClient>();
+				.AddTypedClient<IRoleStore<Role>, RolesClient>()
+				.AddPolicyHandlers();
 		}
 	}
 }
