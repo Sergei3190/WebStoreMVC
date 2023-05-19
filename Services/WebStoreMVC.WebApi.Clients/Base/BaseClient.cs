@@ -3,9 +3,11 @@ using System.Net;
 
 namespace WebStoreMVC.WebApi.Clients.Base;
 
-public abstract class BaseClient
+public abstract class BaseClient : IDisposable
 {
-    protected HttpClient HttpClient { get; }
+	private bool _disposed;
+
+	protected HttpClient HttpClient { get; }
     protected string Address { get; }
 
     public BaseClient(HttpClient httpClient, string address)
@@ -56,5 +58,26 @@ public abstract class BaseClient
 	{
 		var response = await HttpClient.DeleteAsync(url, cancel).ConfigureAwait(false);
 		return response;
+	}
+
+	public void Dispose()
+	{
+		Dispose(true);
+	}
+
+	protected virtual void Dispose(bool dispose)
+	{
+		if (_disposed)
+			return;
+
+		_disposed = true;
+
+		if (dispose)
+		{
+			// удаляем все управляемые ресурсы - те ссылочные объекты, который реализуют интерфейс IDisposible и были созданы внутри 
+			// текущего объекта, те НЕ БЫЛИ переданы через конструктор из вне !!!
+		}
+
+		// удаляем неуправляемые ресурсы, те как подключение к бд, считывание и запись файла, вызов удаленного метода и тд.
 	}
 }
