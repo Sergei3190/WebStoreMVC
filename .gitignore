@@ -365,3 +365,4 @@ FodyWeavers.xsd
 **/wwwroot/js/site.*
 **/wwwroot/css/site.*
 **/WebStoreMVC.db*
+**.*Logs*.log.json

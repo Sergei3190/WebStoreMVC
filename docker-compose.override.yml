@@ -7,9 +7,25 @@ services:
       - U=SA
       - MSSQL_SA_PASSWORD=YourStrong@Passw0rd123
       - MSSQL_PID=Express
+
+  logs: 
+    environment:
+      - ACCEPT_EULA=Y 
+    ports:
+      - "5003:80"
+
+  webstorymvc-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB__Type=DockerDb 
+      - SeqAddress=http://logs
+    ports:
+      - "5002:80"
+
   webstoremvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - DB__Type=DockerDb
+      - WebApi=http://webstorymvc-api
+      - SeqAddress=http://logs
     ports:
       - "80"

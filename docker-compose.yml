@@ -7,8 +7,24 @@ services:
     ports:
      - 1433:1433
     image: "mcr.microsoft.com/mssql/server:2022-latest"
-  webstoremvc:
-    image: ${DOCKER_REGISTRY-}webstoremvc
+
+  logs:
+    container_name: SEQ
+    image: "datalust/seq:latest"
+
+  webstorymvc-api:
+    image: ${DOCKER_REGISTRY-}webstoremvc-api
+    depends_on: 
+     - db
     build:
       context: .
-      dockerfile: WebStoreMVC/Dockerfile
+      dockerfile: Services/WebStoreMVC.WebApi/Dockerfile
+
+  webstoremvc:
+    image: ${DOCKER_REGISTRY-}webstoremvc
+    depends_on: 
+     - logs
+     - webstorymvc-api
+    build:
+      context: .
+      dockerfile: UI/WebStoreMVC/Dockerfile
