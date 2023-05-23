@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Infrastructure.Extensions;
+using WebStoreMVC.Logging.Log4Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru-RU");
 var services = builder.Services;
 
 var config = builder.Configuration;
+
+builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!));
 
 services.AddIdentity<User, Role>()
 	.AddDefaultTokenProviders();

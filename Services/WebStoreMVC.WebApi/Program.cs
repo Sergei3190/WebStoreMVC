@@ -2,18 +2,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 
-using WebStore.WebApi.Handlers.Infrastructure;
-
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
+using WebStoreMVC.Logging.Log4Net;
 using WebStoreMVC.Services.Data;
+using WebStoreMVC.WebApi.Handlers.Infrastructure;
 using WebStoreMVC.WebApi.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var services = builder.Services;	
+var services = builder.Services;
 
 var config = builder.Configuration;
+
+builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!));
 
 var dbType = config["DB:Type"];
 var connectionString = config.GetConnectionString(dbType);
@@ -80,8 +82,8 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

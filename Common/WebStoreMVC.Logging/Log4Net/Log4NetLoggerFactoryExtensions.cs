@@ -20,9 +20,9 @@ public static class Log4NetLoggerFactoryExtensions
         return Path.Combine(dir, filePath);
     }
 
-    public static ILoggingBuilder AddLog4Net(this ILoggingBuilder builder, string ConfigurationFile = "log4net.config")
+    public static ILoggingBuilder AddLog4Net(this ILoggingBuilder builder, string configurationFile = "log4net.config")
     {
-        builder.AddProvider(new Log4NetLoggerProvider(ConfigurationFile.CheckPath()));
+        builder.AddProvider(new Log4NetLoggerProvider(configurationFile.CheckPath()));
         return builder;
     }
 }

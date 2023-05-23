@@ -1,4 +1,4 @@
-﻿namespace WebStore.WebApi.Handlers.Infrastructure;
+﻿namespace WebStoreMVC.WebApi.Handlers.Infrastructure;
 
 public class ExceptionHandler
 {
