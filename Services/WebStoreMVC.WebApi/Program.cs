@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 
+using WebStore.WebApi.Handlers.Infrastructure;
+
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Services.Data;
@@ -85,6 +87,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandler>();
 
 app.MapControllers();
 
