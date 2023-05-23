@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Interfaces", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Services", "Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj", "{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Dto", "Common\WebStoreMVC.Dto\WebStoreMVC.Dto.csproj", "{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Dto", "Common\WebStoreMVC.Dto\WebStoreMVC.Dto.csproj", "{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Logging", "Common\WebStoreMVC.Logging\WebStoreMVC.Logging.csproj", "{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{27015335-B757-4BFC-B52A-415690C924BD} = {FB55461C-54AB-4E35-B58E-46F481FEB11B}
 		{75C95374-6A2B-437A-9DDB-4CF0F9FCFF33} = {FB55461C-54AB-4E35-B58E-46F481FEB11B}
 		{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2} = {E78478D4-7491-424C-8F12-03AB626ED184}
+		{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B} = {E78478D4-7491-424C-8F12-03AB626ED184}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {541815FD-1FE8-47D6-A311-4A97EC8D2C28}
