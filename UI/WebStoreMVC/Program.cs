@@ -2,6 +2,10 @@ using System.Globalization;
 
 using Microsoft.AspNetCore.Identity;
 
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Json;
+
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Infrastructure.Extensions;
@@ -15,7 +19,18 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 
-builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!));
+builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!)!);
+
+builder.Host.UseSerilog((host, log) => log.ReadFrom.Configuration(host.Configuration)
+   .MinimumLevel.Debug()
+   .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+   .Enrich.FromLogContext()
+   .WriteTo.Console(
+		outputTemplate: "[{Timestamp:HH:mm:ss.fff} {Level:u3}]{SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}")
+   .WriteTo.RollingFile($@".\Logs\WebStore[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log")
+   .WriteTo.File(new JsonFormatter(",\r\n", true), $@".\Logs\WebStore[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log.json")
+   .WriteTo.Seq(host.Configuration["SeqAddress"]!)
+);
 
 services.AddIdentity<User, Role>()
 	.AddDefaultTokenProviders();
