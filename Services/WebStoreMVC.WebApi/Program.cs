@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Json;
+
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Logging.Log4Net;
@@ -15,7 +19,18 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 
-builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!));
+builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!)!);
+
+builder.Host.UseSerilog((host, log) => log.ReadFrom.Configuration(host.Configuration)
+   .MinimumLevel.Debug()
+   .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+   .Enrich.FromLogContext()
+   .WriteTo.Console(
+		outputTemplate: "[{Timestamp:HH:mm:ss.fff} {Level:u3}]{SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}")
+   .WriteTo.RollingFile($@".\Logs\WebStoreAPI[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log")
+   .WriteTo.File(new JsonFormatter(",\r\n", true), $@".\Logs\WebStoreAPI[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log.json")
+   .WriteTo.Seq(host.Configuration["SeqAddress"]!)
+);
 
 var dbType = config["DB:Type"];
 var connectionString = config.GetConnectionString(dbType);
