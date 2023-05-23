@@ -60,9 +60,6 @@ services.AddControllersWithViews(opt =>
 
 builder.Services.AddHttpClient("WebStoreMVC.WebApi.Identity", client => 
 {
-	client.DefaultRequestHeaders.Add("Accept", "application/json");
-	client.DefaultRequestHeaders.Add("Accept", "application/xml");
-
 	client.BaseAddress = new Uri(config["WebApi"]);
 })
 	.AddTypedIdentityClients();
