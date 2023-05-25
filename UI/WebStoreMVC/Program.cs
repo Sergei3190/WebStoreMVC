@@ -19,6 +19,7 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 
+//данный лог перекрывается Serilog, оставлен для демонстрации
 builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!)!);
 
 builder.Host.UseSerilog((host, log) => log.ReadFrom.Configuration(host.Configuration)

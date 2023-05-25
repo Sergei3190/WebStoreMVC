@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Services", "Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Dto", "Common\WebStoreMVC.Dto\WebStoreMVC.Dto.csproj", "{7B61303A-15D0-4673-9B3A-0D3D5B88B3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Logging", "Common\WebStoreMVC.Logging\WebStoreMVC.Logging.csproj", "{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Logging", "Common\WebStoreMVC.Logging\WebStoreMVC.Logging.csproj", "{9A8489E3-52D4-4D2A-93C4-4D2CB5DEE59B}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6A231562-266A-4AB8-A46B-8FC165B53C34}"
 EndProject

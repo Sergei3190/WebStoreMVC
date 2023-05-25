@@ -27,4 +27,8 @@
     <ProjectReference Include="..\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>

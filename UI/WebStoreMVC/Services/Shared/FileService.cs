@@ -22,6 +22,8 @@ namespace WebStoreMVC.Services.Shared
 
 			using (var stream = File.Create(filePath))
 				await formFile.CopyToAsync(stream);
+
+			_logger.LogInformation("Файл {0} успешно загружен по пути {1}", formFile.FileName, filePath);
 		}
 
 		private string GetPath(params string[] segments)

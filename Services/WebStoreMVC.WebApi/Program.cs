@@ -10,8 +10,8 @@ using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Logging.Log4Net;
 using WebStoreMVC.Services.Data;
-using WebStoreMVC.WebApi.Handlers.Infrastructure;
 using WebStoreMVC.WebApi.Infrastructure.Extensions;
+using WebStoreMVC.WebApi.Infrastructure.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,7 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 
+//данный лог перекрывается Serilog, оставлен для демонстрации
 builder.Logging.AddLog4Net(configurationFile: config.GetValue<string>("Log4NetConfig", null!)!);
 
 builder.Host.UseSerilog((host, log) => log.ReadFrom.Configuration(host.Configuration)

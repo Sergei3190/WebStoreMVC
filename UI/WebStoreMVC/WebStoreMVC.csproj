@@ -108,4 +108,8 @@
     <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>
