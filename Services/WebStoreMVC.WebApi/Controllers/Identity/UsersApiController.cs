@@ -11,7 +11,7 @@ using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Interfaces;
 using WebStoreMVC.Dto.Identity;
 
-namespace WebStore.WebApi.Controllers.Identity;
+namespace WebStoreMVC.WebApi.Controllers.Identity;
 
 [ApiController]
 [Route(WebApiAddresses.V1.Identity.Users)]
@@ -53,7 +53,7 @@ public class UsersApiController : ControllerBase
 	public async Task<string?> SetNormalizedUserNameAsync([FromBody] User user, string name)
 	{
 		await _userStore.SetNormalizedUserNameAsync(user, name);
-		await _userStore.UpdateAsync(user);
+		_userStore.Context.Users.Update(user);
 
 		return user.NormalizedUserName;
 	}
@@ -136,10 +136,10 @@ public class UsersApiController : ControllerBase
     public async Task<bool> HasPasswordAsync([FromBody] User user) => await _userStore.HasPasswordAsync(user);
 
 	[HttpPost("set-password-hash")]
-	public async Task<string?> RemoveToRoleAsync([FromBody] PasswordHashDto dto)
+	public async Task<string?> SetPasswordHashAsync([FromBody] PasswordHashDto dto)
 	{
 		await _userStore.SetPasswordHashAsync(dto.User, dto.Hash);
-		await _userStore.UpdateAsync(dto.User);
+		await _userStore.Context.SaveChangesAsync();
 		
 		return dto.User.PasswordHash;
 	}
@@ -213,7 +213,8 @@ public class UsersApiController : ControllerBase
 	public async Task<string> SetNormalizedEmailAsync([FromBody] User user, string? email)
 	{
 		await _userStore.SetNormalizedEmailAsync(user, email);
-		await _userStore.UpdateAsync(user);
+		_userStore.Context.Users.Update(user);
+		//await _userStore.UpdateAsync(user);
 		return user.NormalizedEmail!;
 	}
 
