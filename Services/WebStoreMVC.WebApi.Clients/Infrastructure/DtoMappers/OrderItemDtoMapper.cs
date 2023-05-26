@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Orders;
 using WebStoreMVC.Dto;
 
@@ -14,7 +13,7 @@ public static class OrderItemDtoMapper
 		: new OrderItem
 		{
 			Id = orderItem.Id,
-			Product = new Product() { Id = orderItem.ProductId },
+			Product = orderItem.Product.FromDto(),
 			Price = orderItem.Price,
 			Quantity = orderItem.Quantity,
 		};

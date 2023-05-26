@@ -15,5 +15,13 @@ public static class WebApiAddresses
 			public const string Users = "api/v1/users";
 			public const string Roles = "api/v1/roles";
 		}
+
+		public static class Applied
+		{
+			public static class InCookies
+			{
+				public const string Cart = "api/v1/cart";
+			}
+		}
 	}
 }

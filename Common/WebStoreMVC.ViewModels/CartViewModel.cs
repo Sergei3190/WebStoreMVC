@@ -1,4 +1,6 @@
-﻿namespace WebStoreMVC.ViewModels;
+﻿using System.Runtime.Serialization;
+
+namespace WebStoreMVC.ViewModels;
 
 public class CartViewModel
 {

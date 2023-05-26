@@ -13,7 +13,7 @@ public static class OrderItemDtoMapper
 		: new OrderItemDto
 		{
 			Id = orderItem.Id,
-			ProductId = orderItem.Product.Id,
+			Product = orderItem.Product.ToDto(),
 			Price = orderItem.Price,
 			Quantity = orderItem.Quantity,
 		};

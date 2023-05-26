@@ -36,7 +36,7 @@ public abstract class BaseClient : IDisposable
 		}
 	}
 
-	protected HttpResponseMessage Post<T>(string url, T value) => PostAsync<T>(url, value).Result!;
+	protected HttpResponseMessage Post<T>(string url, T? value) => PostAsync<T>(url, value!).Result!;
 
 	protected async Task<HttpResponseMessage> PostAsync<T>(string url, T value, CancellationToken cancel = default)
 	{
@@ -44,7 +44,7 @@ public abstract class BaseClient : IDisposable
 		return response.EnsureSuccessStatusCode();
 	}
 
-	protected HttpResponseMessage Put<T>(string url, T value) => PutAsync<T>(url, value).Result!;
+	protected HttpResponseMessage Put<T>(string url, T? value) => PutAsync<T>(url, value!).Result!;
 
 	protected async Task<HttpResponseMessage> PutAsync<T>(string url, T value, CancellationToken cancel = default)
 	{

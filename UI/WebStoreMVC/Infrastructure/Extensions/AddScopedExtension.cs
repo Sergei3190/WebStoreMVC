@@ -1,6 +1,5 @@
 ﻿using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.Services.Applied;
-using WebStoreMVC.Services.InCookies;
 
 namespace WebStoreMVC.Infrastructure.Extensions
 {
@@ -11,7 +10,6 @@ namespace WebStoreMVC.Infrastructure.Extensions
 			ArgumentNullException.ThrowIfNull(nameof(services));
 
 			services
-				.AddScoped<ICartService, InCookiesCartService>()
 				.AddScoped<IFilesService, FilesService>();
 		}
 	}

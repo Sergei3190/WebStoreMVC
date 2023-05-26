@@ -2,8 +2,10 @@
 
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Interfaces.Services;
+using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.Interfaces.Services.Identity;
 using WebStoreMVC.Interfaces.TestApi;
+using WebStoreMVC.WebApi.Clients.Applied.InCookies;
 using WebStoreMVC.WebApi.Clients.Blogs;
 using WebStoreMVC.WebApi.Clients.Employees;
 using WebStoreMVC.WebApi.Clients.Identity;
@@ -25,6 +27,7 @@ namespace WebStoreMVC.Infrastructure.Extensions
 				.AddTypedClient<IOrderService, OrdersClient>()
 				.AddTypedClient<IBlogsService, BlogsClient>()
 				.AddTypedClient<IEmployeesService, EmployeesClient>()
+				.AddTypedClient<ICartService, InCookiesCartClient>()
 				.AddPolicyHandlers();
 		}
 
