@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Json;
-
-using WebStoreMVC.Domain.Entities;
-using WebStoreMVC.Dto;
+﻿using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces;
 using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.ViewModels;
@@ -12,10 +9,10 @@ namespace WebStoreMVC.WebApi.Clients.Applied.InCookies;
 
 public class InCookiesCartClient : BaseClient, ICartService
 {
-    public InCookiesCartClient(HttpClient httpClient)
-        : base(httpClient, WebApiAddresses.V1.Applied.InCookies.Cart)
-    {
-    }
+	public InCookiesCartClient(HttpClient httpClient)
+		: base(httpClient, WebApiAddresses.V1.Applied.InCookies.Cart)
+	{
+	}
 
 	public void Add(int productId)
 	{
