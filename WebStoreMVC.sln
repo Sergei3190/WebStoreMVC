@@ -43,9 +43,14 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CB416BFD-3072-4317-B6F0-5FD93A90FDDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Services.Tests", "Tests\WebStoreMVC.Services.Tests\WebStoreMVC.Services.Tests.csproj", "{57E00E6F-3F7B-45B2-971B-63C953E3EDCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Services.Tests", "Tests\WebStoreMVC.Services.Tests\WebStoreMVC.Services.Tests.csproj", "{57E00E6F-3F7B-45B2-971B-63C953E3EDCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStoreMVC.Tests", "Tests\WebStoreMVC.Tests\WebStoreMVC.Tests.csproj", "{585C7DC5-F67A-4609-8714-AE55408E1E83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreMVC.Tests", "Tests\WebStoreMVC.Tests\WebStoreMVC.Tests.csproj", "{585C7DC5-F67A-4609-8714-AE55408E1E83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A0342DF6-8CB3-4703-9727-7E2A4B5F6DF4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\tests.yml = .github\workflows\tests.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
