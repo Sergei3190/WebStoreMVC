@@ -42,6 +42,8 @@ public class CartController : Controller
     [Authorize, HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Checkout(OrderViewModel orderViewModel, [FromServices] IOrderService _orderService)
     {
+        ArgumentNullException.ThrowIfNull(orderViewModel, nameof(orderViewModel));
+
         if (!ModelState.IsValid)
         {
             return View(nameof(Index), new CartOrderViewModel()
