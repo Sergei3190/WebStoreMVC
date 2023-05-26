@@ -81,6 +81,7 @@ services.AddControllers(opt =>
 	opt.InputFormatters.Add(new XmlSerializerInputFormatter(opt));
 	opt.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 });
+
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 

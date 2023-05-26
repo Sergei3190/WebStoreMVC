@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Domain.Entities.Identity;
+using WebStoreMVC.Dto;
+using WebStoreMVC.Infrastructure.Mappers;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.ViewModels;
@@ -16,12 +18,12 @@ public class ProductsController : Controller
 {
 	private readonly IProductsService _service;
 	private readonly IMapper _mapper;
-	private readonly IFileService _fileService;
+	private readonly IFilesService _fileService;
 	private readonly ILogger<ProductsController> _logger;
 
 	public ProductsController(IProductsService service,
 		IMapper mapper,
-		IFileService fileService,
+		IFilesService fileService,
 		ILogger<ProductsController> logger)
 	{
 		_service = service;
@@ -78,7 +80,9 @@ public class ProductsController : Controller
 
 		var product = _mapper.Map<Product>(viewModel);
 
-		await _fileService.SaveFileInRootDirectory(viewModel.FormFile, "images", "shop");
+		var fileDto = await viewModel.FormFile.ToDtoAsync(new[] { "images", "shop" }).ConfigureAwait(false);
+
+		await _fileService.SaveFileInRootDirectory(fileDto!);
 
 		if (viewModel.Id == 0)
 			await _service.AddAsync(product);

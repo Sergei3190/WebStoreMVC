@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\WebStoreMVC.Domain\WebStoreMVC.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\WebStoreMVC.Dto\WebStoreMVC.Dto.csproj" />
     <ProjectReference Include="..\..\Common\WebStoreMVC.ViewModels\WebStoreMVC.ViewModels.csproj" />
   </ItemGroup>
 
