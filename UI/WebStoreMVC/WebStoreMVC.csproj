@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\animate.css" />
     <None Include="wwwroot\css\main.css" />
     <None Include="wwwroot\css\prettyPhoto.css" />
@@ -106,10 +113,6 @@
     <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
     <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>

@@ -6,9 +6,9 @@ using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.ViewModels;
 
 namespace WebStoreMVC.Contollers;
+
 public class CartController : Controller
 {
-
     private readonly ICartService _service;
 
     public CartController(ICartService service)
