@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing.Drawing2D;
 
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
@@ -16,6 +17,7 @@ public static class SectionDtoMapper
 			Name = section.Name,
 			Order = section.Order,
 			ParentId = section.ParentId,
+			ProductsCount = section.Products is null ? 0 : section.Products.Count,
 		};
 
 	[return: NotNullIfNotNull("section")]
@@ -27,6 +29,7 @@ public static class SectionDtoMapper
 		Name = section.Name,
 		Order = section.Order,
 		ParentId = section.ParentId,
+		Products = new Product[section.ProductsCount]
 	};
 
 	public static IEnumerable<SectionDto> ToDto(this IEnumerable<Section>? sections) => sections?.Select(ToDto)!;

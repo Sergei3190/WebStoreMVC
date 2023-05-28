@@ -15,6 +15,7 @@ public static class BrandDtoMapper
 			Id = brand.Id,
 			Name = brand.Name,
 			Order = brand.Order,
+			ProductsCount = brand.Products is null ? 0 : brand.Products.Count,
 		};
 
 	[return: NotNullIfNotNull("brand")]
@@ -25,6 +26,7 @@ public static class BrandDtoMapper
 			Id = brand.Id,
 			Name = brand.Name,
 			Order = brand.Order,
+			Products = new Product[brand.ProductsCount]
 		};
 
 	public static IEnumerable<BrandDto> ToDto(this IEnumerable<Brand>? brands) => brands?.Select(ToDto)!;

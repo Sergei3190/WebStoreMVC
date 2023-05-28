@@ -16,19 +16,20 @@ public static class SectionDtoMapper
 			Name = section.Name,
 			Order = section.Order,
 			ParentId = section.ParentId,
+			ProductsCount = section.Products is null ? 0 : section.Products.Count,
 		};
 
 	[return: NotNullIfNotNull("section")]
 	public static Section? FromDto(this SectionDto? section) => section is null
-		? null
-		: new Section
-		{
-			Id = section.Id,
-			Name = section.Name,
-			Order = section.Order,
-			ParentId = section.ParentId,
-		};
-
+	? null
+	: new Section
+	{
+		Id = section.Id,
+		Name = section.Name,
+		Order = section.Order,
+		ParentId = section.ParentId,
+		Products = new Product[section.ProductsCount]
+	};
 	public static IEnumerable<SectionDto> ToDto(this IEnumerable<Section>? sections) => sections?.Select(ToDto)!;
 
 	public static IEnumerable<Section> FromDto(this IEnumerable<SectionDto>? sections) => sections?.Select(FromDto)!;

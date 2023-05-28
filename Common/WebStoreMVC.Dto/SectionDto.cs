@@ -5,4 +5,5 @@ public class SectionDto
     public string Name { get; init; } = null!;
     public int Order { get; init; }
     public int? ParentId { get; init; }
+	public int ProductsCount { get; set; }
 }

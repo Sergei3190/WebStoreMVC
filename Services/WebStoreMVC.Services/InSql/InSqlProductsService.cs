@@ -29,7 +29,7 @@ namespace WebStoreMVC.Services.InSql
                 .FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Brand> GetBrands() => _db.Brands;
+        public IEnumerable<Brand> GetBrands() => _db.Brands.Include(b => b.Products);
 
         public Brand? GetBrandById(int id)
         {

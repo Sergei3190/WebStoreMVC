@@ -22,6 +22,7 @@ public class BrandsViewComponent : ViewComponent
         .Select(b => new BrandViewModel()
         {
             Id = b.Id,
-            Name = b.Name
-        });
+            Name = b.Name,
+			ProductsCount = b.Products.Count,
+		});
 }
