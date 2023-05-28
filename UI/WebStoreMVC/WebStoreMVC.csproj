@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\BreadCrumbs\Default.cshtml" />
     <None Include="wwwroot\css\animate.css" />
     <None Include="wwwroot\css\main.css" />
     <None Include="wwwroot\css\prettyPhoto.css" />
