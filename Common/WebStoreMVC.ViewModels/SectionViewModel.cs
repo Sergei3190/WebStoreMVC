@@ -4,10 +4,7 @@ namespace WebStoreMVC.ViewModels;
 
 public class SectionViewModel : NamedViewModel
 {
-    public SectionViewModel()
-    {
-        ChildSections = new List<SectionViewModel>();
-    }
+	public IEnumerable<SectionViewModel> ChildSections { get; set; } = null!;
 
-    public IEnumerable<SectionViewModel> ChildSections { get; set; }
+	public int ProductsCount { get; set; }
 }
