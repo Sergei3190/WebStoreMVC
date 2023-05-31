@@ -29,7 +29,7 @@ public static class SectionDtoMapper
 		Order = section.Order,
 		ParentId = section.ParentId,
 		Products = new Product[section.ProductsCount]
-	};
+    };
 	public static IEnumerable<SectionDto> ToDto(this IEnumerable<Section>? sections) => sections?.Select(ToDto)!;
 
 	public static IEnumerable<Section> FromDto(this IEnumerable<SectionDto>? sections) => sections?.Select(FromDto)!;

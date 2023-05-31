@@ -20,7 +20,7 @@ namespace WebStoreMVC.Services.InSql
             _logger = logger;
         }
 
-        public IEnumerable<Section> GetSections() => _db.Sections;
+        public IEnumerable<Section> GetSections() => _db.Sections.Include(s => s.Products);
 
         public Section? GetSectionById(int id)
         {
