@@ -43,4 +43,10 @@ public class InCookiesCartClient : BaseClient, ICartService
 		var result = Get<IEnumerable<OrderItemDto>>($"{Address}/view-model");
 		return result.ToCartViewModel() ?? new CartViewModel();
 	}
+
+	public int GetItemsCount()
+	{
+		var result = Get<int>($"{Address}/items-count");
+		return result;
+	}
 }

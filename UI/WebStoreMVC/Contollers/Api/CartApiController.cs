@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using WebStoreMVC.Interfaces.Services.Applied;
 
 namespace WebStoreMVC.Contollers.Api;

@@ -77,4 +77,6 @@ public class InCookiesCartService : ICartService
 				.Select(i => ValueTuple.Create(products_views[i.ProductId], i.Quantity))!,
 		};
 	}
+
+	public int GetItemsCount() => _cartStore.Cart.ItemsCount;
 }

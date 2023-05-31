@@ -12,4 +12,6 @@ public interface ICartService
     public void Clear();
 
     CartViewModel GetCartViewModel();
+
+    int GetItemsCount();
 }

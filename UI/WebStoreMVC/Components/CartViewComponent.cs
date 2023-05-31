@@ -5,13 +5,13 @@ using WebStoreMVC.Interfaces.Services.Applied;
 namespace WebStoreMVC.Components;
 public class CartViewComponent : ViewComponent
 {
-	private readonly ICartStore _CartStore;
+	private readonly ICartService _service;
 
-	public CartViewComponent(ICartStore CartStore) => _CartStore = CartStore;
+	public CartViewComponent(ICartService service) => _service = service;
 
 	public IViewComponentResult Invoke()
 	{
-		ViewBag.Count = _CartStore.Cart.ItemsCount;
+		ViewBag.Count = _service.GetItemsCount();
 		return View();
 	}
 }

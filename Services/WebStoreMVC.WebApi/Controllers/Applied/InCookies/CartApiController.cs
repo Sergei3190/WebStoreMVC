@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces;
 using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.WebApi.Infrastructure.DtoMappers;
@@ -24,13 +23,16 @@ public class CartApiController : ControllerBase
 	[HttpGet("view-model")]
 	public IActionResult GetCartViewModel()
 	{
-		var result = _service.GetCartViewModel();	
-		
+		var result = _service.GetCartViewModel();
+
 		if (result is null)
 			return NotFound();
 
 		return Ok(result.ToDto());
 	}
+
+	[HttpGet("items-count")]
+	public IActionResult GetItemsCount() => Ok(_service.GetItemsCount());
 
 	[HttpPost]
 	public IActionResult Add(int productId)
