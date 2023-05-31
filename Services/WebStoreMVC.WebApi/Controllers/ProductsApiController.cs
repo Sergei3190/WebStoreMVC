@@ -2,8 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-using WebStoreMVC.Domain.Entities;
+using WebStoreMVC.Domain;
 using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.WebApi.Infrastructure.DtoMappers;

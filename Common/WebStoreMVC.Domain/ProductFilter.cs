@@ -1,4 +1,4 @@
-﻿namespace WebStoreMVC.Domain.Entities;
+﻿namespace WebStoreMVC.Domain;
 
 public class ProductFilter
 {

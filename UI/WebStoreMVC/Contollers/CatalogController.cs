@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 
 using Microsoft.AspNetCore.Mvc;
-
-using WebStoreMVC.Domain.Entities;
+using WebStoreMVC.Domain;
 using WebStoreMVC.Infrastructure.Mappers;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;

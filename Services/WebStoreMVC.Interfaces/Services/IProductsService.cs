@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-
+using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 
 namespace WebStoreMVC.Interfaces.Services;

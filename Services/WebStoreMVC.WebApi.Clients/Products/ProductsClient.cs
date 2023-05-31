@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 using WebStoreMVC.Interfaces.Services;

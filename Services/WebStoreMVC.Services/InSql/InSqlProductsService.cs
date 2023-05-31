@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 using WebStoreMVC.DAL.Context;
+using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.ViewModels;

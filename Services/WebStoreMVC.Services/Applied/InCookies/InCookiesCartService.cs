@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-using WebStoreMVC.Domain.Entities;
+using WebStoreMVC.Domain;
 using WebStoreMVC.Interfaces.Services;
 using WebStoreMVC.Interfaces.Services.Applied;
 using WebStoreMVC.Services.Mappers;
