@@ -9,9 +9,11 @@
 			</li>
 		}
 		<li><a asp-controller="UserProfile" asp-action="Index"><i class="fa fa-user"></i>@User.Identity!.Name</a></li>
-		<li><a href="#"><i class="fa fa-star"></i> Список желаний</a></li>
-		<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Оформить заказ</a></li>
-		<li><a asp-controller="Cart" asp-action="Index"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+		<li>
+			<a asp-controller="Cart" asp-action="Index" id="cart-container">
+				<vc:cart/>
+			</a>
+		</li>
 		<li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out"></i>Выход</a></li>
 	</ul>
 </div>
