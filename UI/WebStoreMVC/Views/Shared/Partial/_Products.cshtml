@@ -17,11 +17,18 @@
 							   asp-action="Details" 
 							   asp-route-id="@product.Id"
 							   asp-route-sectionId="@Context.Request.Query["sectionId"]"
-							   asp-route-brandId="@Context.Request.Query["brandId"]">
+							   asp-route-brandId="@Context.Request.Query["brandId"]"
+							>
 								@product.Name
 							</a>
 						</p>
-						<a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" class="btn btn-default add-to-cart">
+						<a 
+							data-id="@product.Id"
+							asp-controller="Cart"
+							asp-action="Add" 
+							asp-route-id="@product.Id" 
+							class="btn btn-default add-to-cart"
+						>
 							<i class="fa fa-shopping-cart"></i>В корзину
 						</a>
 					</div>
@@ -33,11 +40,18 @@
 								   asp-action="Details"
 								   asp-route-id="@product.Id"
 								   asp-route-sectionId="@Context.Request.Query["sectionId"]"
-								   asp-route-brandId="@Context.Request.Query["brandId"]">
+								   asp-route-brandId="@Context.Request.Query["brandId"]"
+								>
 									@product.Name
 								</a>
 							</p>
-							<a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" class="btn btn-default add-to-cart">
+							<a 
+								data-id="@product.Id"
+							    asp-controller="Cart"
+							    asp-action="Add"
+							    asp-route-id="@product.Id"
+							    class="btn btn-default add-to-cart"
+							>
 								<i class="fa fa-shopping-cart"></i>В корзину
 							</a>
 						</div>
