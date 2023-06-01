@@ -90,6 +90,7 @@
     <None Include="wwwroot\images\shop\product7.jpg" />
     <None Include="wwwroot\images\shop\product8.jpg" />
     <None Include="wwwroot\images\shop\product9.jpg" />
+    <None Include="wwwroot\js\Catalog\сatalogLogic.js" />
     <None Include="wwwroot\js\contact.js" />
     <None Include="wwwroot\js\gmaps.js" />
     <None Include="wwwroot\js\main.js" />
