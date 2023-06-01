@@ -12,4 +12,6 @@ public class CatalogViewModel
     public int? BrandId { get; set; }
 
     public IEnumerable<ProductViewModel> Products { get; set; }
+
+	public PageViewModel Page { get; set; }
 }

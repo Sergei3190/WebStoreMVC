@@ -43,7 +43,7 @@ public class ProductsApiController : ControllerBase
 	{
 		var result = _service.GetProducts(filter);
 
-		if (result.Any())
+		if (result.Items.Count() > 0)
 			return Ok(result.ToDto());
 
 		return NoContent();

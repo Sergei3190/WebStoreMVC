@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
+using WebStore.Domain;
+
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
 using WebStoreMVC.ViewModels;
@@ -69,4 +71,9 @@ public static class ProductDtoMapper
 		};
 
 	public static IEnumerable<ProductDto> ToDto(this IEnumerable<Product>? products) => products?.Select(ToDto)!;
+
+	[return: NotNullIfNotNull("page")]
+	public static Page<ProductDto>? ToDto(this Page<Product>? page) => page is null
+	? null
+	: new(page.Items.ToDto(), page.PageNumber, page.PageSize, page.TotalCount);
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WebStore.Domain;
+
 using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 
@@ -9,7 +11,7 @@ public interface IProductsService
 
 	IEnumerable<Brand> GetBrands();
 
-	IEnumerable<Product> GetProducts(ProductFilter? filter = null);
+	Page<Product> GetProducts(ProductFilter? filter = null);
 
 	Section? GetSectionById(int id);
 

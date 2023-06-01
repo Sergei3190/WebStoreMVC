@@ -34,7 +34,7 @@ public class ProductsController : Controller
 
 	public IActionResult Index()
 	{
-		var products = _service.GetProducts()
+		var products = _service.GetProducts().Items
 			.Select(p => _mapper.Map<ProductViewModel>(p));
 
 		return View(products);

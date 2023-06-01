@@ -29,7 +29,7 @@ public class SiteMapApiController : ControllerBase
 		foreach (var brand in productsService.GetBrands())
 			nodes.Add(new(Url.Action("Index", "Catalog", new { BrandId = brand.Id })));
 
-		foreach (var product in productsService.GetProducts())
+		foreach (var product in productsService.GetProducts().Items)
 			nodes.Add(new(Url.Action("Details", "Catalog", new { product.Id })));
 
 		foreach (var blog in blogsService.GetAll())

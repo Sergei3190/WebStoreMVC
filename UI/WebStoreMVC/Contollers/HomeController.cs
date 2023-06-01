@@ -9,15 +9,14 @@ namespace WebStoreMVC.Contollers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index([FromServices] IProductsService service, [FromServices] IMapper mapper)
-    {
-        var products = service.GetProducts();
+	public IActionResult Index([FromServices] IProductsService service, [FromServices] IMapper mapper)
+	{
+		var products = service.GetProducts(new() { PageNumber = 1, PageSize = 6 });
 
-        ViewBag.Products = products
-            .OrderBy(p => p.Order)
-            .Take(6)
-            .Select(p => mapper.Map<ProductViewModel>(p));
+		ViewBag.Products = products.Items
+			.OrderBy(p => p.Order)
+			.Select(p => mapper.Map<ProductViewModel>(p));
 
-        return View();
-    }
+		return View();
+	}
 }

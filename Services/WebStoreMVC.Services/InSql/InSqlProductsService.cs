@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using WebStore.Domain;
 
 using WebStoreMVC.DAL.Context;
 using WebStoreMVC.Domain;
@@ -39,7 +42,7 @@ namespace WebStoreMVC.Services.InSql
                 .FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Product> GetProducts(ProductFilter? filter)
+        public Page<Product> GetProducts(ProductFilter? filter)
         {
             var query = _db.Products
                .Include(p => p.Section)
@@ -57,8 +60,18 @@ namespace WebStoreMVC.Services.InSql
                     query = query.Where(x => x.BrandId == brandId);
             }
 
-            return query;
-        }
+			var count = query.Count();
+
+			if (filter is { PageSize: > 0 and var pageSize, PageNumber: > 0 and var pageNumber })
+			{
+				query = query
+                    .OrderBy(q => q.Order)
+					.Skip((pageNumber - 1) * pageSize)
+					.Take(pageSize);
+			}
+
+			return new(query, filter?.PageNumber ?? 0, filter?.PageSize ?? 0, count);
+		}
 
         public async Task<Product?> GetProductById(int id, CancellationToken cancel = default)
         {

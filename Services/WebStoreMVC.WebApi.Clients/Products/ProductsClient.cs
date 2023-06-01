@@ -1,6 +1,9 @@
 ﻿using System.Net.Http.Json;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
+
+using WebStore.Domain;
+
 using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Dto;
@@ -41,20 +44,20 @@ public class ProductsClient : BaseClient, IProductsService
 		return result?.FromDto()!;
 	}
 
-	public IEnumerable<Product> GetProducts(ProductFilter? filter = null)
+	public Page<Product> GetProducts(ProductFilter? filter = null)
 	{
 		var response = Post($"{Address}/list", filter ?? new());
 
 		if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-			return Enumerable.Empty<Product>();
+			return new(Enumerable.Empty<Product>(), 0, 0, 0);
 
 		var products = response
 			.EnsureSuccessStatusCode()
 			.Content
-			.ReadFromJsonAsync<IEnumerable<ProductDto>>()
+			.ReadFromJsonAsync<Page<ProductDto>>()
 			.Result;
 
-		return products.FromDto();
+		return products.FromDto()!;
 	}
 
 	public async Task<Product?> GetProductById(int id, CancellationToken cancel = default)

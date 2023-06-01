@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+
+using WebStore.Domain;
+
 using WebStoreMVC.Domain;
 using WebStoreMVC.Domain.Entities;
 using WebStoreMVC.Interfaces.Services;
@@ -48,7 +51,7 @@ public class InCookiesCartServiceTests
 		_product_data_mock = new Mock<IProductsService>();
 		_product_data_mock
 		   .Setup(c => c.GetProducts(It.IsAny<ProductFilter>()))
-		   .Returns(new[]
+		   .Returns(new Page<Product>(new[]
 			{
 				new Product
 				{
@@ -83,7 +86,7 @@ public class InCookiesCartServiceTests
 					SectionId = 3,
 					Section = new Section{ Id = 3, Name = "Section 3", Order = 3 },
 				},
-			});
+			}, 1, 3, 3));
 
 		_cart_store_mock = new Mock<ICartStore>();
 		_cart_store_mock.Setup(c => c.Cart).Returns(_cart);
