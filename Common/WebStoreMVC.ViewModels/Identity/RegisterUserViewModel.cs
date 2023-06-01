@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace WebStoreMVC.ViewModels.Identity;
 
 public class RegisterUserViewModel
@@ -14,6 +16,7 @@ public class RegisterUserViewModel
     [Required(ErrorMessage="Имя пользователя не указано")]
     [MaxLength(255)]
     [Display(Name = "Имя пользователя")]
+    [Remote("IsNameFree", "Account")]
     public string UserName { get; set;}
 
     [Required(ErrorMessage = "Пароль является обязательным")]
