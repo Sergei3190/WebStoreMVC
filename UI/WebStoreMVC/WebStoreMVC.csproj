@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\AjaxTest\Chat.cshtml" />
+    <None Include="Views\AjaxTest\Index.cshtml" />
+    <None Include="Views\AjaxTest\Partial\_DataView.cshtml" />
     <None Include="Views\Shared\Components\BreadCrumbs\Default.cshtml" />
     <None Include="Views\Shared\Components\Cart\Default.cshtml" />
     <None Include="wwwroot\css\animate.css" />

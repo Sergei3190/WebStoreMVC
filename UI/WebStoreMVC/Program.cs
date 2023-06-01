@@ -6,6 +6,8 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 
+using WebStoreMVC.Hubs;
+
 using WebStoreMVC.Domain.Entities.Identity;
 using WebStoreMVC.Infrastructure.Conventions;
 using WebStoreMVC.Infrastructure.Extensions;
@@ -93,6 +95,8 @@ services.AddScopedServices();
 
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -111,7 +115,9 @@ app.MapGet("/greetings", () => app.Configuration["ServerGreetings"]);
 
 app.UseEndpoints(endpoints =>
 {
-	endpoints.MapControllerRoute(
+    endpoints.MapHub<ChatHub>("/chat");
+
+    endpoints.MapControllerRoute(
 		name: "areas",
 		pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
