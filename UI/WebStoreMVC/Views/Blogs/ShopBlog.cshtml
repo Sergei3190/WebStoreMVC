@@ -1,0 +1,53 @@
+﻿@model BlogViewModel
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<partial name="Partial/_LeftSideBar"/>
+			</div>
+			<div class="col-sm-9">
+				<div class="blog-post-area">
+					<h2 class="title text-center">Latest From our Блог</h2>
+					<div class="single-blog-post">
+						<h3>@Model.Name</h3>
+						<div class="post-meta">
+							<ul>
+								<li><i class="fa fa-user"></i> Mac Doe</li>
+								<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
+								<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+							</ul>
+							<span>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-half-o"></i>
+							</span>
+						</div>
+						<a href="">
+							<img src="~/images/blog/@Model.ImageUrl" alt="">
+						</a>
+						@Html.Raw(@Model.FullText)
+						<div class="pager-area">
+							<ul class="pager pull-right">
+								<li><a href="#">Pre</a></li>
+								<li><a href="#">Next</a></li>
+							</ul>
+						</div>
+					</div>
+				</div><!--/blog-post-area-->
+
+				<partial name="Partial/_RatingArea"/>
+
+				<partial name="Partial/_SocialsShare"/>
+
+				<partial name="Partial/_Comments"/>
+
+				<partial name="Partial/_ResponseArea"/>
+
+				<partial name="Partial/_ReplayBox"/>
+			</div>	
+		</div>
+	</div>
+</section>

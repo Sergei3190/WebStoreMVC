@@ -1,0 +1,30 @@
+﻿<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+<script src="~/lib/scrollup/jquery.scrollUp.min.js"></script>
+<script src="~/js/price-range.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="~/js/gmaps.js"></script>
+<script src="~/lib/jquery-loading-overlay/loadingoverlay.min.js"></script>
+<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+
+<environment include="development">
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/contact.js"></script>
+</environment>
+
+<environment exclude="development">
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+</environment>
+
+<script src="~/js/Cart/сartLogic.js" asp-append-version="true"></script>
+<script>
+    $(function () {
+        Cart.init({
+            getCartViewLink: "@Url.Action("GetCartView","CartApi")",
+            addToCartLink: "@Url.Action("AddApi","CartApi")",
+            decrementLink: "@Url.Action("DecrementApi","CartApi")",
+            removeFromCartLink: "@Url.Action("RemoveApi","CartApi")"
+        });
+    })
+</script>

@@ -1,0 +1,47 @@
+﻿@model CatalogViewModel
+@{
+	ViewBag.Title = "Каталог товаров";
+}
+
+<section id="advertisement">
+	<div class="container">
+		<img src="~/images/shop/advertisement.jpg" alt="" />
+	</div>
+</section>
+					
+<section>
+	<div class="container">
+		<div class="row">
+			<vc:bread-crumbs />
+
+			<div class="col-sm-3">
+				<partial name="Partial/_LeftSideBar"/>
+			</div>
+				
+			<div class="col-sm-9 padding-right">
+				<div id="catalog-items-container">
+					<partial name="Partial/_Products" model="Model.Products" />
+				</div>
+
+				<paging page-model="Model.Page"
+						page-action="Index"
+						page-url-SectionId="@Model.SectionId"
+						page-url-BrandId="@Model.BrandId"
+						page-url-PageSize="@Context.Request.Query["PageSize"]">
+				</paging>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts
+{
+	<script src="~/js/Catalog/сatalogLogic.js" asp-append-version="false"></script>
+	<script>
+		$(function () {
+			Catalog.init({
+				getViewLink: "@Url.Action("GetProductsApi","CatalogApi")"
+			});
+		})
+	</script>
+}

@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  db: 
+    environment:
+      - ACCEPT_EULA=Y
+      - U=SA
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd123
+      - MSSQL_PID=Express
+
+  logs: 
+    environment:
+      - ACCEPT_EULA=Y 
+    ports:
+      - "5003:80"
+
+  webstorymvc-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB__Type=DockerDb 
+      - SeqAddress=http://logs
+    ports:
+      - "5002:80"
+
+  webstoremvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=32516Kenp@rkWer
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - WebApi=http://webstorymvc-api
+      - SeqAddress=http://logs
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ~/.aspnet/https:/https:ro

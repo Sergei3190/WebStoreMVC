@@ -1,0 +1,7 @@
+﻿@model string;
+
+<div class="container">
+    <ng-container *ngIf="Model.Equals("404", StringComparison.CurrentCultureIgnoreCase)">
+        <partial name="Partial/_Error404"/>
+    </ng-container>
+</div>

@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
+    <UserSecretsId>6681cf4d-34ac-4c04-9792-8e909aa06e91</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\AjaxTest\Chat.cshtml" />
+    <None Include="Views\AjaxTest\Index.cshtml" />
+    <None Include="Views\AjaxTest\Partial\_DataView.cshtml" />
+    <None Include="Views\Shared\Components\BreadCrumbs\Default.cshtml" />
+    <None Include="Views\Shared\Components\Cart\Default.cshtml" />
+    <None Include="wwwroot\css\animate.css" />
+    <None Include="wwwroot\css\main.css" />
+    <None Include="wwwroot\css\prettyPhoto.css" />
+    <None Include="wwwroot\css\price-range.css" />
+    <None Include="wwwroot\css\responsive.css" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\images\404\404.png" />
+    <None Include="wwwroot\images\blog\blog-one.jpg" />
+    <None Include="wwwroot\images\blog\blog-three.jpg" />
+    <None Include="wwwroot\images\blog\blog-two.jpg" />
+    <None Include="wwwroot\images\blog\man-four.jpg" />
+    <None Include="wwwroot\images\blog\man-one.jpg" />
+    <None Include="wwwroot\images\blog\man-three.jpg" />
+    <None Include="wwwroot\images\blog\man-two.jpg" />
+    <None Include="wwwroot\images\blog\socials.png" />
+    <None Include="wwwroot\images\cart\one.png" />
+    <None Include="wwwroot\images\cart\three.png" />
+    <None Include="wwwroot\images\cart\two.png" />
+    <None Include="wwwroot\images\home\bg_border.png" />
+    <None Include="wwwroot\images\home\gallery1.jpg" />
+    <None Include="wwwroot\images\home\gallery2.jpg" />
+    <None Include="wwwroot\images\home\gallery3.jpg" />
+    <None Include="wwwroot\images\home\gallery4.jpg" />
+    <None Include="wwwroot\images\home\girl1.jpg" />
+    <None Include="wwwroot\images\home\girl2.jpg" />
+    <None Include="wwwroot\images\home\girl3.jpg" />
+    <None Include="wwwroot\images\home\iframe1.png" />
+    <None Include="wwwroot\images\home\iframe2.png" />
+    <None Include="wwwroot\images\home\iframe3.png" />
+    <None Include="wwwroot\images\home\iframe4.png" />
+    <None Include="wwwroot\images\home\logo.png" />
+    <None Include="wwwroot\images\home\map.png" />
+    <None Include="wwwroot\images\home\new.png" />
+    <None Include="wwwroot\images\home\partner1.png" />
+    <None Include="wwwroot\images\home\partner2.png" />
+    <None Include="wwwroot\images\home\partner3.png" />
+    <None Include="wwwroot\images\home\partner4.png" />
+    <None Include="wwwroot\images\home\pricing.png" />
+    <None Include="wwwroot\images\home\product1.jpg" />
+    <None Include="wwwroot\images\home\product2.jpg" />
+    <None Include="wwwroot\images\home\product3.jpg" />
+    <None Include="wwwroot\images\home\product4.jpg" />
+    <None Include="wwwroot\images\home\product5.jpg" />
+    <None Include="wwwroot\images\home\product6.jpg" />
+    <None Include="wwwroot\images\home\recommend1.jpg" />
+    <None Include="wwwroot\images\home\recommend2.jpg" />
+    <None Include="wwwroot\images\home\recommend3.jpg" />
+    <None Include="wwwroot\images\home\sale.png" />
+    <None Include="wwwroot\images\home\searchicon.png" />
+    <None Include="wwwroot\images\home\shipping.jpg" />
+    <None Include="wwwroot\images\product-details\1.jpg" />
+    <None Include="wwwroot\images\product-details\new.jpg" />
+    <None Include="wwwroot\images\product-details\rating.png" />
+    <None Include="wwwroot\images\product-details\share.png" />
+    <None Include="wwwroot\images\product-details\similar1.jpg" />
+    <None Include="wwwroot\images\product-details\similar2.jpg" />
+    <None Include="wwwroot\images\product-details\similar3.jpg" />
+    <None Include="wwwroot\images\shop\advertisement.jpg" />
+    <None Include="wwwroot\images\shop\product1.jpg" />
+    <None Include="wwwroot\images\shop\product10.jpg" />
+    <None Include="wwwroot\images\shop\product11.jpg" />
+    <None Include="wwwroot\images\shop\product12.jpg" />
+    <None Include="wwwroot\images\shop\product2.jpg" />
+    <None Include="wwwroot\images\shop\product3.jpg" />
+    <None Include="wwwroot\images\shop\product4.jpg" />
+    <None Include="wwwroot\images\shop\product5.jpg" />
+    <None Include="wwwroot\images\shop\product6.jpg" />
+    <None Include="wwwroot\images\shop\product7.jpg" />
+    <None Include="wwwroot\images\shop\product8.jpg" />
+    <None Include="wwwroot\images\shop\product9.jpg" />
+    <None Include="wwwroot\js\Catalog\сatalogLogic.js" />
+    <None Include="wwwroot\js\contact.js" />
+    <None Include="wwwroot\js\gmaps.js" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\price-range.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
+    <PackageReference Include="SimpleMvcSitemap" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebStoreMVC.Logging\WebStoreMVC.Logging.csproj" />
+    <ProjectReference Include="..\..\Data\WebStoreMVC.DAL\WebStoreMVC.DAL.csproj" />
+    <ProjectReference Include="..\..\Data\WebStoreMVC.Sqlite\WebStoreMVC.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Services\WebStoreMVC.Services\WebStoreMVC.Services.csproj" />
+    <ProjectReference Include="..\..\Services\WebStoreMVC.WebApi.Clients\WebStoreMVC.WebApi.Clients.csproj" />
+  </ItemGroup>
+
+</Project>

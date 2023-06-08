@@ -1,0 +1,49 @@
+﻿@model SelectableSectionsViewModel;
+
+<h2>Категории</h2>
+<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+
+	@foreach (var parent in Model.Sections.Where(s => (s.ChildSections.Any(c => c.ProductsCount > 0)) || s.ProductsCount > 0))
+	{
+		if (parent.ChildSections.Any())
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordian" href="#@parent.GetHashCode()">
+							<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+							@parent.Name (@parent.ChildSections.Sum(c => c.ProductsCount))
+						</a>
+					</h4>
+				</div>
+				<div id="@parent.GetHashCode()" class="panel-collapse collapse @(parent.Id == Model.ParentSectionId ? "in" : null)">
+					<div class="panel-body">
+						<ul>
+							@foreach(var child in parent.ChildSections.Where(c => c.ProductsCount > 0))
+							{
+								<li @(child.Id == Model.SectionId ? "class=active" : null)>
+									<a asp-controller="Catalog" asp-action="Index" asp-route-sectionId="@child.Id">
+										@child.Name (@child.ProductsCount)
+									</a>
+								</li>
+							}
+						</ul>
+					</div>
+				</div>
+			</div>
+		}
+		else
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a asp-controller="Catalog" asp-action="Index" asp-route-sectionId="@parent.Id">
+							@parent.Name (@parent.ProductsCount)
+						</a>
+					</h4>
+				</div>
+			</div>
+		}
+	}
+
+</div><!--/category-products-->
