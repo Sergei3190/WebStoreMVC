@@ -1,0 +1,77 @@
+name: release
+ 
+on:
+  push:
+    tags:
+    - "v*"
+
+jobs:
+
+  build:
+  
+    strategy:
+      matrix:
+       configuration: [Release]
+
+    runs-on: ubuntu-latest 
+  
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore WebStoreMVC.sln
+
+    - name: Build
+      run: dotnet build WebStoreMVC.sln --no-restore
+
+    - name: Get branch names
+      id: branch-name
+      uses: tj-actions/branch-names@v7
+
+    - name: Test
+      run: dotnet test WebStoreMVC.sln --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ steps.branch-name.outputs.tag }}"
+      
+    - name: Download artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-store-mvc-test-results-${{ steps.branch-name.outputs.tag }}
+        path: TestResults-${{ steps.branch-name.outputs.tag }}
+        retention-days: 30
+        
+    - name: Archive site content
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        type: 'zip'
+        filename: 'site.zip'
+        
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.branch-name.outputs.tag }}
+        release_name: Release ${{ steps.branch-name.outputs.tag }}
+        prerelease: false
+        draft: false
+        
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./site.zip
+          asset_name: site-${{ steps.branch-name.outputs.tag }}.zip
+          asset_content_type: application/zip
+        
+    
