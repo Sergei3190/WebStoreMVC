@@ -103,6 +103,13 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();
 }
+else
+{
+	app.UseExceptionHandler("/Errors");
+	app.UseHsts();
+}
+
+app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 

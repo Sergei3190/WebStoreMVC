@@ -11,5 +11,5 @@ public class ErrorsController : Controller
         return View();
     }
 
-    public IActionResult Error404() => View(_error404);
+    public IActionResult Error404() => PartialView("Partial/_Error404",_error404);
 }
