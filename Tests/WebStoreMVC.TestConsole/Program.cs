@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 
 var connection = new HubConnectionBuilder()
-   .WithUrl("http://localhost:5000/chat")
+   .WithUrl("https://localhost:5000/chat")
    .Build();
 
 using var registration = connection.On<string>("MessageToClient", OnMessageFromServer);
