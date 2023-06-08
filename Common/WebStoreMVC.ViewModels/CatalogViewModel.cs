@@ -5,6 +5,7 @@ public class CatalogViewModel
     public CatalogViewModel()
     {
         Products = Enumerable.Empty<ProductViewModel>();
+        Page = null!;
     }
 
     public int? SectionId { get; set; }

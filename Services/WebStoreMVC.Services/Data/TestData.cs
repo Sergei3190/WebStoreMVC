@@ -72,18 +72,18 @@ public static class TestData
 
     public static IEnumerable<Product> Products { get; } = new List<Product>()
     {
-        new () { Id = 1, Name = "Easy Polo Black Edition", Order = 0, SectionId = 15, BrandId = 1, ImageUrl = "product1.jpg", Price = 1025,},
-        new () { Id = 2, Name = "Easy Polo Black Edition", Order = 1, SectionId = 2, BrandId = 1, ImageUrl = "product2.jpg", Price = 1025,},
-        new () { Id = 3, Name = "Easy Polo Black Edition", Order = 2, SectionId = 3, BrandId = 1, ImageUrl = "product3.jpg", Price = 1025,},
-        new () { Id = 4, Name = "Easy Polo Black Edition", Order = 3, SectionId = 5, BrandId = 1, ImageUrl = "product4.jpg", Price = 1025,},
-        new () { Id = 5, Name = "Easy Polo Black Edition", Order = 4, SectionId = 23, BrandId = 1, ImageUrl = "product5.jpg", Price = 1025,},
-        new () { Id = 6, Name = "Easy Polo Black Edition", Order = 5, SectionId = 8, BrandId = 2, ImageUrl = "product6.jpg", Price = 1025,},
-        new () { Id = 7, Name = "Easy Polo Black Edition", Order = 6, SectionId = 2, BrandId = 2, ImageUrl = "product7.jpg", Price = 1025,},
-        new () { Id = 8, Name = "Easy Polo Black Edition", Order = 7, SectionId = 25, BrandId = 2, ImageUrl = "product8.jpg", Price = 1025,},
-        new () { Id = 9, Name = "Easy Polo Black Edition", Order = 8, SectionId = 20, BrandId = 2, ImageUrl = "product9.jpg", Price = 1025,},
-        new () { Id = 10, Name = "Easy Polo Black Edition", Order = 9, SectionId = 25, BrandId = 3, ImageUrl = "product10.jpg", Price = 1025,},
-        new () { Id = 11, Name = "Easy Polo Black Edition", Order = 10, SectionId = 16, BrandId = 3, ImageUrl = "product11.jpg", Price = 1025,},
-        new () { Id = 12, Name = "Easy Polo Black Edition", Order = 11, SectionId = 25, BrandId = 3, ImageUrl = "product12.jpg", Price = 1025,},
+        new () { Id = 1, Name = _productName, Order = 0, SectionId = 15, BrandId = 1, ImageUrl = "product1.jpg", Price = 1025,},
+        new () { Id = 2, Name = _productName, Order = 1, SectionId = 2, BrandId = 1, ImageUrl = "product2.jpg", Price = 1025,},
+        new () { Id = 3, Name = _productName, Order = 2, SectionId = 3, BrandId = 1, ImageUrl = "product3.jpg", Price = 1025,},
+        new () { Id = 4, Name = _productName, Order = 3, SectionId = 5, BrandId = 1, ImageUrl = "product4.jpg", Price = 1025,},
+        new () { Id = 5, Name = _productName, Order = 4, SectionId = 23, BrandId = 1, ImageUrl = "product5.jpg", Price = 1025,},
+        new () { Id = 6, Name = _productName, Order = 5, SectionId = 8, BrandId = 2, ImageUrl = "product6.jpg", Price = 1025,},
+        new () { Id = 7, Name = _productName, Order = 6, SectionId = 2, BrandId = 2, ImageUrl = "product7.jpg", Price = 1025,},
+        new () { Id = 8, Name = _productName, Order = 7, SectionId = 25, BrandId = 2, ImageUrl = "product8.jpg", Price = 1025,},
+        new () { Id = 9, Name = _productName, Order = 8, SectionId = 20, BrandId = 2, ImageUrl = "product9.jpg", Price = 1025,},
+        new () { Id = 10, Name = _productName, Order = 9, SectionId = 25, BrandId = 3, ImageUrl = "product10.jpg", Price = 1025,},
+        new () { Id = 11, Name = _productName, Order = 10, SectionId = 16, BrandId = 3, ImageUrl = "product11.jpg", Price = 1025,},
+        new () { Id = 12, Name = _productName, Order = 11, SectionId = 25, BrandId = 3, ImageUrl = "product12.jpg", Price = 1025,},
     };
 
     public static IEnumerable<Blog> Blogs { get; } = new List<Blog>()

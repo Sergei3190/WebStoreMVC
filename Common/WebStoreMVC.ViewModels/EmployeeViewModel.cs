@@ -34,7 +34,7 @@ namespace WebStoreMVC.ViewModels
         [Range(18, 80, ErrorMessage = "Возраст должен быть в диапазоне от 18 до 80 лет")]
         public int Age { get; set; }
 
-        public IEnumerable<ValidationResult?> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (FirstName == "Иван" && LastName == "Иванов" && MiddleName == "Иванович")
             {
@@ -49,7 +49,7 @@ namespace WebStoreMVC.ViewModels
                 };
             }
 
-            return new [] { ValidationResult.Success };
+            return new [] { ValidationResult.Success }!;
         }
     }
 }

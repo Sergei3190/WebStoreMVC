@@ -40,7 +40,7 @@ public class UsersClient : BaseClient, IUsersClient
 		   .ConfigureAwait(false);
 	}
 
-	public async Task SetUserNameAsync(User user, string name, CancellationToken cancel = default)
+	public async Task SetUserNameAsync(User user, string? name, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/user-name/{name}", user, cancel);
 		user.UserName = await response
@@ -60,7 +60,7 @@ public class UsersClient : BaseClient, IUsersClient
 		   .ConfigureAwait(false);
 	}
 
-	public async Task SetNormalizedUserNameAsync(User user, string name, CancellationToken cancel = default)
+	public async Task SetNormalizedUserNameAsync(User user, string? name, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/normal-user-name/{name}", user, cancel);
 		user.NormalizedUserName = await response
@@ -169,9 +169,9 @@ public class UsersClient : BaseClient, IUsersClient
 
 	#region Implementation of IUserPasswordStore<User>
 
-	public async Task SetPasswordHashAsync(User user, string hash, CancellationToken cancel = default)
+	public async Task SetPasswordHashAsync(User user, string? hash, CancellationToken cancel = default)
 	{
-		var response = await PostAsync($"{Address}/set-password-hash", new PasswordHashDto { User = user, Hash = hash }, cancel)
+		var response = await PostAsync($"{Address}/set-password-hash", new PasswordHashDto { User = user, Hash = hash! }, cancel)
 		   .ConfigureAwait(false);
 		user.PasswordHash = await response
 		   .EnsureSuccessStatusCode()
@@ -203,7 +203,7 @@ public class UsersClient : BaseClient, IUsersClient
 
 	#region Implementation of IUserEmailStore<User>
 
-	public async Task SetEmailAsync(User user, string email, CancellationToken cancel = default)
+	public async Task SetEmailAsync(User user, string? email, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/set-email/{email}", user, cancel).ConfigureAwait(false);
 		user.Email = await response
@@ -259,7 +259,7 @@ public class UsersClient : BaseClient, IUsersClient
 		   .ConfigureAwait(false);
 	}
 
-	public async Task SetNormalizedEmailAsync(User user, string email, CancellationToken cancel = default)	
+	public async Task SetNormalizedEmailAsync(User user, string? email, CancellationToken cancel = default)	
 	{
 		var response = await PostAsync($"{Address}/set-normalized-email/{email}", user, cancel).ConfigureAwait(false);
 		user.NormalizedEmail = await response
@@ -273,7 +273,7 @@ public class UsersClient : BaseClient, IUsersClient
 
 	#region Implementation of IUserPhoneNumberStore<User>
 
-	public async Task SetPhoneNumberAsync(User user, string phone, CancellationToken cancel = default)
+	public async Task SetPhoneNumberAsync(User user, string? phone, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/set-phone-number/{phone}", user, cancel).ConfigureAwait(false);
 		user.PhoneNumber = await response

@@ -77,7 +77,7 @@ public class RolesClient : BaseClient, IRolesClient
 		   .ConfigureAwait(false);
 	}
 
-	public async Task SetRoleNameAsync(Role role, string name, CancellationToken cancel = default)
+	public async Task SetRoleNameAsync(Role role, string? name, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/set-role-name/{name}", role, cancel).ConfigureAwait(false);
 		role.Name = await response
@@ -97,7 +97,7 @@ public class RolesClient : BaseClient, IRolesClient
 		   .ConfigureAwait(false);
 	}
 
-	public async Task SetNormalizedRoleNameAsync(Role role, string name, CancellationToken cancel = default)
+	public async Task SetNormalizedRoleNameAsync(Role role, string? name, CancellationToken cancel = default)
 	{
 		var response = await PostAsync($"{Address}/set-normalized-role-name/{name}", role, cancel).ConfigureAwait(false);
 		role.NormalizedName = await response

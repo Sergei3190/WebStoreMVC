@@ -18,6 +18,7 @@ public class CartApiController : ControllerBase
 		ILogger<CartApiController> logger)
 	{
 		_service = service;
+		_logger = logger;	
 	}
 
 	[HttpGet("view-model")]
