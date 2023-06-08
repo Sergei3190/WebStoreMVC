@@ -3,6 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -14,8 +15,8 @@ COPY ["Data/WebStoreMVC.Sqlite/WebStoreMVC.DAL.Sqlite.csproj", "Data/WebStoreMVC
 COPY ["Services/WebStoreMVC.Services/WebStoreMVC.Services.csproj", "Services/WebStoreMVC.Services/"]
 COPY ["Common/WebStoreMVC.ViewModels/WebStoreMVC.ViewModels.csproj", "Common/WebStoreMVC.ViewModels/"]
 COPY ["Services/WebStoreMVC.Interfaces/WebStoreMVC.Interfaces.csproj", "Services/WebStoreMVC.Interfaces/"]
-COPY ["Services/WebStoreMVC.WebApi.Clients/WebStoreMVC.WebApi.Clients.csproj", "Services/WebStoreMVC.WebApi.Clients/"]
 COPY ["Common/WebStoreMVC.Dto/WebStoreMVC.Dto.csproj", "Common/WebStoreMVC.Dto/"]
+COPY ["Services/WebStoreMVC.WebApi.Clients/WebStoreMVC.WebApi.Clients.csproj", "Services/WebStoreMVC.WebApi.Clients/"]
 RUN dotnet restore "UI/WebStoreMVC/WebStoreMVC.csproj"
 COPY . .
 WORKDIR "/src/UI/WebStoreMVC"
