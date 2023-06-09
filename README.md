@@ -29,8 +29,11 @@ This web store demonstrates the following skills:
 - ORM EF Core (Code First)
 - MSSQL
 - SQLite
+- JavaScript
 - jQuery
 - Ajax
+- HTML
+- CSS
 - SignalR (chat alike)
 - working with Identity
 - Using cookies to store shopping carts,
@@ -75,9 +78,12 @@ This web store demonstrates the following skills:
 - ASP.NET Web Api с применением стиля REST
 - ORM EF Core (Code First)
 - MSSQL
-- Sqlite
+- SQLite
+- JavaScript
 - jQuery
-- ajax
+- Ajax
+- HTML
+- CSS
 - SignalR (подобие чата)
 - работа с системой Identity
 - использование куков для хранения корзины товаров,
