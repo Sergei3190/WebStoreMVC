@@ -2,6 +2,8 @@
 
 [![tests](https://github.com/Sergei3190/WebStoreMVC/actions/workflows/tests.yml/badge.svg)](https://github.com/Sergei3190/WebStoreMVC/actions/workflows/tests.yml)
 
+[![release](https://github.com/Sergei3190/WebStoreMVC/actions/workflows/release.yml/badge.svg)](https://github.com/Sergei3190/WebStoreMVC/actions/workflows/release.yml)
+
 Test web store.
 
 Includes:
