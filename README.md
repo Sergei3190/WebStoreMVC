@@ -28,6 +28,7 @@ This web store demonstrates the following skills:
 - SOA pattern-based development 
 - ASP.NET MVC (Razor)
 - ASP.NET Web API using REST style
+- Swagger
 - ORM EF Core (Code First)
 - MSSQL
 - SQLite
@@ -78,6 +79,7 @@ This web store demonstrates the following skills:
 - разработка на основании паттерна SOA 
 - ASP.NET MVC (Razor)
 - ASP.NET Web Api с применением стиля REST
+- Swagger
 - ORM EF Core (Code First)
 - MSSQL
 - SQLite
