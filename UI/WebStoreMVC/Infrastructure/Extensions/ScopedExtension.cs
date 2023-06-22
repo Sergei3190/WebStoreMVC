@@ -3,7 +3,7 @@ using WebStoreMVC.Services.Applied;
 
 namespace WebStoreMVC.Infrastructure.Extensions
 {
-	public static class AddScopedExtension
+	public static class ScopedExtension
 	{
 		public static void AddScopedServices(this IServiceCollection services)
 		{

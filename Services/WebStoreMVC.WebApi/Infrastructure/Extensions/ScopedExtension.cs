@@ -6,7 +6,7 @@ using WebStoreMVC.Services.InSql;
 
 namespace WebStoreMVC.WebApi.Infrastructure.Extensions
 {
-	public static class AddScopedExtension
+	public static class ScopedExtension
 	{
 		public static void AddScopedServices(this IServiceCollection services)
 		{

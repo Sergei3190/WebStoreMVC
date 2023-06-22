@@ -3,7 +3,7 @@ using Polly.Extensions.Http;
 
 namespace WebStoreMVC.Infrastructure.Extensions
 {
-	public static class AddPollyExtension
+	public static class PollyExtension
 	{
 		public static void AddPolicyHandlers(this IHttpClientBuilder clientBuilder)
 		{

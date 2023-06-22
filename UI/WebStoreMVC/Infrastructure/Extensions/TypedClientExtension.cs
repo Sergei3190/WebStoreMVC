@@ -15,7 +15,7 @@ using WebStoreMVC.WebApi.Clients.Values;
 
 namespace WebStoreMVC.Infrastructure.Extensions
 {
-	public static class AddTypedClientExtension
+	public static class TypedClientExtension
 	{
 		public static void AddTypedClients(this IHttpClientBuilder clientBuilder)
 		{
